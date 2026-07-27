@@ -1,0 +1,49 @@
+<header class="relative w-full z-50 pt-2 pb-0">
+
+  <div class="nav-container flex items-center justify-between">
+    <!-- Brand: transparent logo from `src/assets/logo_navbar.png` → `public/navbar-logo.png` -->
+    <button type="button" class="brand-hit" (click)="setView('home')" aria-label="Rukmini Swayamvar — Home">
+      <img [src]="brandLogoSrc" alt="Rukmini Swayamvar" class="navbar-brand-logo" width="543" height="140"
+        loading="eager" fetchpriority="high" decoding="async">
+    </button>
+
+    <div class="flex items-center space-x-3 md:space-x-6">
+      <!-- Language Selector -->
+      <div class="relative group">
+        <!-- <button class="btn-lang flex items-center space-x-2">
+          <span>{{ currentLang === 'en' ? 'EN' : currentLang === 'hi' ? 'HI' : 'MR' }}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg> -->
+        <!-- </button> -->
+        <div
+          class="absolute right-0 mt-3 w-32 py-2 bg-white/95 backdrop-blur-lg border border-pink-100 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[60]">
+          <button (click)="setLanguage('en')"
+            class="w-full text-left px-5 py-2 text-sm hover:bg-pink-50 text-slate-700 hover:text-pink-600 transition-colors">English</button>
+          <button (click)="setLanguage('hi')"
+            class="w-full text-left px-5 py-2 text-sm hover:bg-pink-50 text-slate-700 hover:text-pink-600 transition-colors">हिंदी</button>
+          <button (click)="setLanguage('mr')"
+            class="w-full text-left px-5 py-2 text-sm hover:bg-pink-50 text-slate-700 hover:text-pink-600 transition-colors">मराठी</button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center space-x-3">
+        @if (currentView === 'home') {
+        <button (click)="setView('login')" class="btn-pink-outline text-xs">
+          {{ t.login }}
+        </button>
+        <button (click)="setView('register')" class="btn-gold text-xs">
+          {{ t.register }}
+        </button>
+        } @else if (currentView === 'profile-form') {
+        <!-- Optional content for profile-form -->
+        } @else {
+        <button (click)="setView('home')" class="btn-pink-outline text-xs">
+          {{ t.backHome }}
+        </button>
+        }
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,39 @@
+<app-hero [t]="t" (viewChange)="setView($event)"></app-hero>
+
+<!-- Above-fold adjacent: load on idle right after first paint (faster than waiting for scroll) -->
+@defer (on idle) {
+  <app-stats [t]="t"></app-stats>
+} @placeholder {
+  <div class="min-h-[160px]" aria-hidden="true"></div>
+}
+@defer (on idle) {
+  <app-how-section></app-how-section>
+} @placeholder {
+  <div class="min-h-[240px]" aria-hidden="true"></div>
+}
+
+<!-- Below-fold: load when near viewport; prefetch chunks on idle -->
+@defer (prefetch on idle; on viewport) {
+  <app-search [t]="t"></app-search>
+} @placeholder {
+  <div class="min-h-[200px]" aria-hidden="true"></div>
+}
+@defer (prefetch on idle; on viewport) {
+  <app-promises></app-promises>
+} @placeholder {
+  <div class="min-h-[180px]" aria-hidden="true"></div>
+}
+@defer (prefetch on idle; on viewport) {
+  <app-how-works [t]="t"></app-how-works>
+} @placeholder {
+  <div class="min-h-[320px]" aria-hidden="true"></div>
+}
+
+<!-- Success stories: eager (API prefetched) -->
+<app-stories></app-stories>
+
+@defer (prefetch on idle; on viewport) {
+  <app-divine-match [t]="t"></app-divine-match>
+} @placeholder {
+  <div class="min-h-[200px]" aria-hidden="true"></div>
+}

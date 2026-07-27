@@ -1,0 +1,18 @@
+{
+  "/api": {
+    "target": "https://vescript.vescript.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/uploads": {
+    "target": "https://vescript.vescript.com",
+    "secure": true,
+    "changeOrigin": true
+  },
+  "/matrimony": {
+    "target": "https://vescript.vescript.com",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

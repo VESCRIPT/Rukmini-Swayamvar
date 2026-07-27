@@ -1,0 +1,151 @@
+.hero-section {
+  position: relative;
+  background: #ffffff;
+}
+
+/* .slider-bg {
+  background-repeat: no-repeat;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+} */
+/* .transition-bg {
+  opacity: 1;
+} */
+
+/* Cinematic Dark Vignette
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    overlay will be set dynamically per slide; smooth transitions
+    background: linear-gradient(rgba(4,29,36,0.48), rgba(0,0,0,0.55));
+    transition: background 0.9s ease;
+  }
+*/
+
+.soft-pattern {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(243, 58, 106, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Premium Gold Animation */
+
+
+.btn-pink {
+  background: #F33A6A;
+  color: white;
+  border: none;
+}
+
+/* Entrance Animations */
+.animate-fade-in {
+  animation: fadeIn 1.2s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-slide-up-delayed {
+  animation: slideUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delayed {
+  animation: fadeIn 1.2s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.glassmorphism-premium {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(173, 20, 87, 0.1);
+}
+
+.hero-right-container {
+  width: min(100%, 460px);
+  aspect-ratio: 2 / 3;
+  height: auto;
+  border-radius: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(237, 82, 149, 0.2);
+}
+
+.hero-right-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(237, 82, 149, 0.05) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.content-placeholder {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-slide-image {
+  height: 100%;
+  width: auto;
+  max-width: none;
+}
+
+@media (max-width: 1024px) {
+  .hero-right-container {
+    width: min(100%, 380px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-section {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 3.5rem !important;
+  }
+}

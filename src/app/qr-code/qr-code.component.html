@@ -1,0 +1,32 @@
+<div class="qr-card">
+  <p class="instruction-text">
+    Point your phone camera at the QR code or use one of the download links below
+  </p>
+
+  <div class="qr-main-section">
+    <div class="qr-image-container" aria-label="App download QR code">
+      <img
+        [src]="qrImageSrc"
+        alt="Scan to open Rukmini Swayamvar app download page"
+        class="qr-image"
+        width="140"
+        height="140"
+        loading="lazy"
+        decoding="async" />
+      <span class="qr-brand-mark" aria-hidden="true">RS</span>
+    </div>
+
+    <div class="store-buttons">
+      <a [href]="downloadUrl" target="_blank" rel="noopener noreferrer" class="store-link">
+        <img src="/store/google-play-badge.svg"
+          alt="Get it on Google Play" class="store-badge" width="135" height="40" loading="lazy"
+          decoding="async">
+      </a>
+      <a [href]="downloadUrl" target="_blank" rel="noopener noreferrer" class="store-link">
+        <img src="/store/app-store-badge.svg"
+          alt="Download on the App Store" class="store-badge" width="120" height="40" loading="lazy"
+          decoding="async">
+      </a>
+    </div>
+  </div>
+</div>

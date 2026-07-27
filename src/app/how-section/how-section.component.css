@@ -1,0 +1,202 @@
+.download-banner {
+	background-color: #fce7f3;
+	padding: 1rem 1.25rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%
+}
+
+.download-text {
+	font-size: 1.25rem;
+	font-weight: 800;
+	color: #1a2e44
+}
+
+.brand-title {
+	font-family: 'Cinzel', serif;
+	background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	letter-spacing: .12em;
+	font-weight: 700;
+	display: inline-block;
+}
+
+.phone-container {
+	position: relative;
+	z-index: 10
+}
+
+.circle-bg {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 220px;
+	height: 220px;
+	background: #fbcfe8;
+	border-radius: 50%;
+	z-index: -1;
+	opacity: .85
+}
+
+.mobile-frame {
+	width: 180px;
+	height: 380px;
+	background: #111;
+	border-radius: 34px;
+	border: 6px solid #222;
+	box-shadow: 0 20px 40px -10px rgba(0, 0, 0, .2);
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative
+}
+
+.screen-content {
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	display: flex;
+	flex-direction: column;
+	font-size: 10px
+}
+
+.profile-img-fit {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+	/* Focus on the face */
+}
+
+.gold-input {
+	border: 1px solid #fef3c7;
+	background: #fffdf5;
+	border-radius: 10px
+}
+
+.no-scrollbar::-webkit-scrollbar {
+	display: none
+}
+
+.no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none
+}
+
+/* Divine footer inserted after 'Download the App' — keeps no overlay and is responsive */
+.divine-footer {
+	background-color: #fff8f6;
+	background-size: cover;
+	background-position: center;
+	height: 380px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin: 0;
+	padding: 0;
+	position: relative
+}
+
+.divine-footer-inner {
+	max-width: 1100px;
+	padding: 1rem 1.25rem;
+	text-align: center
+}
+
+.divine-heading {
+	color: #f02d64;
+	font-family: 'Cinzel', serif;
+	font-size: 2rem;
+	line-height: 1.1;
+	margin: 0;
+	font-weight: 700
+}
+
+.divine-subtext {
+	color: rgba(240, 42, 100, 0.85);
+	font-family: 'Playfair Display', serif;
+	font-size: 1rem;
+	margin-top: .5rem
+}
+
+@media (min-width:768px) {
+	.divine-heading {
+		font-size: 2.75rem
+	}
+
+	.divine-subtext {
+		font-size: 1.125rem
+	}
+
+	/* left align the inner text on medium+ screens; align closer to the section left edge */
+	.divine-footer-inner {
+		text-align: left;
+		padding-left: 8%;
+		padding-right: 2rem;
+	}
+}
+
+@media (max-width:480px) {
+	.divine-footer {
+		height: 350px
+	}
+
+	.divine-heading {
+		font-size: 1.5rem
+	}
+}
+
+/* Portrait inside divine footer */
+.divine-portrait-wrapper {
+	display: block;
+	text-align: center;
+	margin-bottom: 0.5rem
+}
+
+.divine-portrait {
+	width: 160px;
+	height: 160px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 6px solid rgba(255, 255, 255, 0.16);
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+	background: #fff;
+	display: inline-block
+}
+
+/* Position portrait to the right on larger screens without affecting centered heading */
+@media (min-width:900px) {
+	.divine-footer-inner {
+		padding-right: 320px;
+	}
+
+	.divine-portrait-wrapper {
+		position: absolute;
+		right: 6%;
+		top: 18%;
+		margin: 0;
+		text-align: right
+	}
+
+	.divine-portrait {
+		width: 220px;
+		height: 220px
+	}
+}
+
+/* On small screens keep the portrait centered above heading */
+@media (max-width:899px) {
+	.divine-portrait-wrapper {
+		position: relative;
+		display: block;
+		margin: 0 auto 0.5rem
+	}
+
+	.divine-portrait {
+		width: 160px;
+		height: 160px
+	}
+}

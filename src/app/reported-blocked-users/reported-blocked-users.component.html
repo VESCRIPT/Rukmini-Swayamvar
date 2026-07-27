@@ -1,0 +1,161 @@
+<div class="reported-blocked-container">
+  <div class="settings-header">
+    <button class="back-btn" (click)="goBack()" aria-label="Back to settings">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <h1>Reported & Blocked</h1>
+    <div class="placeholder"></div>
+  </div>
+
+  <div class="content-shell">
+    <div class="tab-header">
+      <button type="button" class="tab-btn" [class.active]="activeTab === 'reported'" (click)="switchTab('reported')">
+        Reported
+      </button>
+      <button type="button" class="tab-btn" [class.active]="activeTab === 'blocked'" (click)="switchTab('blocked')">
+        Blocked
+      </button>
+      <button type="button" class="tab-btn" [class.active]="activeTab === 'my-account'" (click)="switchTab('my-account')">
+        My Account
+      </button>
+    </div>
+
+    <div class="settings-content" *ngIf="activeTab === 'reported'">
+      <div class="empty-card" *ngIf="loadingReported">
+        <h3>Loading reports...</h3>
+        <p>Please wait while we fetch your submitted reports.</p>
+      </div>
+      <div class="settings-list" *ngIf="reportedUsers.length > 0; else reportedEmpty">
+        <div class="settings-item" *ngFor="let user of reportedUsers">
+          <div class="profile-avatar clickable-profile" (click)="onViewProfile(user.userId)">
+            <img *ngIf="user.photo" [src]="user.photo" alt="{{ user.name }}" class="avatar-img" (error)="user.photo = ''">
+            <svg *ngIf="!user.photo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </div>
+          <div class="item-text">
+            <div class="user-title clickable-text" (click)="onViewProfile(user.userId)">
+              <span>{{ user.name }}</span>
+              <span class="user-id">({{ user.profileId }})</span>
+            </div>
+            <div class="info-grid">
+              <p><strong>Phone:</strong> {{ user.phone }}</p>
+              <p><strong>Status:</strong> <span class="status-badge">{{ user.status }}</span></p>
+              <p><strong>Reported At:</strong> {{ user.date }}</p>
+              <p><strong>Updated At:</strong> {{ user.updatedAt }}</p>
+              <p class="full-width"><strong>Reason/Note:</strong> {{ user.reason }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #reportedEmpty>
+        <div class="empty-card" *ngIf="!loadingReported">
+          <h3>No reported users</h3>
+          <p>Your reported users will appear here.</p>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="settings-content" *ngIf="activeTab === 'blocked'">
+      <div class="empty-card" *ngIf="loadingBlocked">
+        <h3>Loading blocked users...</h3>
+        <p>Please wait while we fetch your blocked users list.</p>
+      </div>
+      <div class="settings-list" *ngIf="blockedUsers.length > 0; else blockedEmpty">
+        <div class="settings-item" *ngFor="let user of blockedUsers">
+          <div class="profile-avatar clickable-profile" (click)="onViewProfile(user.blockedUserId)">
+            <img *ngIf="user.photo" [src]="user.photo" alt="{{ user.name }}" class="avatar-img" (error)="user.photo = ''">
+            <svg *ngIf="!user.photo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </div>
+          <div class="item-text">
+            <div class="user-title clickable-text" (click)="onViewProfile(user.blockedUserId)">
+              <span>{{ user.name }}</span>
+              <span class="user-id">({{ user.profileId }})</span>
+            </div>
+            <div class="info-grid">
+              <p><strong>Phone:</strong> {{ user.phone }}</p>
+              <p><strong>Blocked At:</strong> {{ user.date }}</p>
+              <p><strong>Updated At:</strong> {{ user.updatedAt }}</p>
+              <p class="full-width"><strong>Reason/Note:</strong> {{ user.reason }}</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="unblock-btn"
+            [disabled]="unblockingUserId === user.blockedUserId"
+            (click)="unblockUser(user)">
+            {{ unblockingUserId === user.blockedUserId ? 'Unblocking...' : 'Unblock' }}
+          </button>
+        </div>
+      </div>
+      <ng-template #blockedEmpty>
+        <div class="empty-card" *ngIf="!loadingBlocked">
+          <h3>No blocked users</h3>
+          <p>Blocked profiles will appear here.</p>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="settings-content" *ngIf="activeTab === 'my-account'">
+      <div class="empty-card" *ngIf="loadingAccount">
+        <h3>Loading my account...</h3>
+        <p>Please wait while we fetch reports connected to your account.</p>
+      </div>
+
+      <div class="account-section" *ngIf="!loadingAccount">
+        <h3 class="account-section-title">Warnings</h3>
+        <div class="settings-list" *ngIf="accountWarnings.length > 0; else warningsEmpty">
+          <div class="settings-item" *ngFor="let item of accountWarnings">
+            <div class="item-text">
+              <div class="user-title">
+                <span>{{ item.title }}</span>
+                <span class="user-id">({{ item.profileId }})</span>
+              </div>
+              <div class="info-grid">
+                <p><strong>Phone:</strong> {{ item.phone }}</p>
+                <p><strong>Status:</strong> <span class="status-badge">{{ item.status }}</span></p>
+                <p><strong>Created At:</strong> {{ item.date }}</p>
+                <p><strong>Updated At:</strong> {{ item.updatedAt }}</p>
+                <p class="full-width"><strong>Reason/Note:</strong> {{ item.reason }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #warningsEmpty>
+          <div class="empty-card">
+            <h3>No warnings</h3>
+            <p>Account warnings will appear here.</p>
+          </div>
+        </ng-template>
+      </div>
+
+      <div class="account-section" *ngIf="!loadingAccount">
+        <h3 class="account-section-title">Reports Against Me</h3>
+        <div class="settings-list" *ngIf="reportsAgainstMe.length > 0; else reportsAgainstMeEmpty">
+          <div class="settings-item" *ngFor="let item of reportsAgainstMe">
+            <div class="item-text">
+              <div class="user-title">
+                <span>{{ item.title }}</span>
+                <span class="user-id">({{ item.profileId }})</span>
+              </div>
+              <div class="info-grid">
+                <p><strong>Phone:</strong> {{ item.phone }}</p>
+                <p><strong>Status:</strong> <span class="status-badge">{{ item.status }}</span></p>
+                <p><strong>Reported At:</strong> {{ item.date }}</p>
+                <p><strong>Updated At:</strong> {{ item.updatedAt }}</p>
+                <p class="full-width"><strong>Reason/Note:</strong> {{ item.reason }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #reportsAgainstMeEmpty>
+          <div class="empty-card">
+            <h3>No reports against me</h3>
+            <p>Reports submitted against your account will appear here.</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

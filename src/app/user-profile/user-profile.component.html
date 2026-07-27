@@ -1,0 +1,70 @@
+<div class="lp-page">
+
+
+  <!-- Back button -->
+  <button class="lp-back" (click)="onBack()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M19 12H5M12 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <!-- Card -->
+  <div class="lp-card">
+
+    <!-- Brand -->
+    <div class="text-center mb-6">
+      <h1 class="font-cinzel gold-shine-text font-bold text-2xl md:text-3xl uppercase tracking-widest leading-tight">
+        {{ t.title }}
+      </h1>
+      <p
+        class="font-cinzel gold-shine-text font-semibold text-xs md:text-sm uppercase tracking-[0.3em] mt-0.5 opacity-80">
+        {{ t.subtitle }}
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form class="lp-form">
+
+      <div class="lp-field">
+        <label class="lp-label">{{ t.emailLabel }}</label>
+        <input type="text" class="lp-input" [(ngModel)]="email" name="email" placeholder="Enter your email">
+      </div>
+
+      <div class="lp-field">
+        <label class="lp-label">{{ t.passwordLabel }}</label>
+        <div class="lp-input-wrap">
+          <input [type]="showPassword ? 'text' : 'password'" class="lp-input" [(ngModel)]="password" name="password"
+            placeholder="Enter your password">
+          <button type="button" class="lp-eye" (click)="showPassword = !showPassword" tabindex="-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path *ngIf="!showPassword" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle *ngIf="!showPassword" cx="12" cy="12" r="3" />
+              <path *ngIf="showPassword"
+                d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24M1 1l22 22" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Forgot Password -->
+      <div class="lp-forgot-wrap">
+        <button type="button" class="lp-forgot" (click)="onForgotPassword()">Forgot password?</button>
+      </div>
+
+      <div *ngIf="errorMessage" class="lp-error">{{ errorMessage }}</div>
+
+      <button type="button" class="lp-submit" (click)="onLogin()" [disabled]="isLoading">
+        <span *ngIf="!isLoading">{{ t.login }}</span>
+        <span *ngIf="isLoading" class="lp-spinner"></span>
+      </button>
+
+    </form>
+
+    <!-- Register link -->
+    <p class="lp-register-row">
+      Don't have an account?
+      <button type="button" class="lp-register-link" (click)="onGoToRegister()">Register</button>
+    </p>
+
+  </div>
+</div>

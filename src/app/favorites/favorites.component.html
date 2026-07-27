@@ -1,0 +1,99 @@
+<div class="favorites-container" [class.sidebar-open]="sidebarOpen">
+  <!-- Fixed Left Sidebar -->
+  <aside class="favorites-sidebar" [class.open]="sidebarOpen">
+    <!-- <div class="sidebar-logo">
+      <span class="sidebar-logo-icon">🌸</span>
+      <div class="sidebar-logo-text">
+        <h3>RUKMINI</h3>
+        <p>Swayamvar</p>
+      </div>
+    </div> -->
+    <nav class="sidebar-nav">
+      <button type="button" class="nav-item" (click)="setView('dashboard'); closeSidebar()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        <span>Home</span>
+      </button>
+      <button type="button" class="nav-item" (click)="setView('messages'); closeSidebar()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+        <span>Messages</span>
+      </button>
+      <button type="button" class="nav-item active" (click)="setView('favorites'); closeSidebar()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </svg>
+        <span>Favorites</span>
+      </button>
+      <button type="button" class="nav-item" (click)="setView('premium'); closeSidebar()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        </svg>
+        <span>Premium</span>
+      </button>
+    </nav>
+  </aside>
+
+  <button class="sidebar-overlay" *ngIf="sidebarOpen" type="button" (click)="closeSidebar()" aria-label="Close sidebar"></button>
+
+  <!-- Main Content -->
+  <main class="favorites-main-content">
+    <!-- Header -->
+    <header class="favorites-header">
+      <div class="header-left">
+        <button class="sidebar-toggle" type="button" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <button class="back-btn" (click)="onBack()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h2 class="favorites-title">Favorites</h2>
+      </div>
+    </header>
+
+    <!-- Favorites Content -->
+    <div class="favorites-content">
+      <!-- Tab Buttons -->
+      <div class="tab-section">
+        <button class="tab-btn" [class.active]="activeTab === 'favorite'" (click)="setTab('favorite')">
+          Favorite
+        </button>
+        <button class="tab-btn" [class.active]="activeTab === 'shortlisted'" (click)="setTab('shortlisted')">
+          Shortlisted
+        </button>
+      </div>
+
+      <!-- Favorite Profiles List -->
+      <div class="profiles-list">
+        <div class="profile-card" *ngFor="let profile of currentProfiles" (click)="viewProfileDetail(profile.id)">
+          <div class="profile-left">
+            <div class="profile-avatar">
+              <img *ngIf="!showProfileIcon(profile)" [src]="profile.avatar" [alt]="profile.name"
+                (error)="markAvatarFailed(profile.id)">
+              <span *ngIf="showProfileIcon(profile)" class="profile-avatar-icon" aria-hidden="true">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+              </span>
+            </div>
+            <div class="profile-info">
+              <h4 class="profile-name">{{ profile.name }}</h4>
+              <p class="profile-age">Age: {{ profile.age }}</p>
+              <p class="profile-details">{{ profile.religion }} | {{ profile.location }} | {{ profile.profession }}</p>
+              <button class="view-btn" type="button"
+                (click)="$event.stopPropagation(); viewProfileDetail(profile.id)">View</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,137 @@
+<div class="wlc-page">
+
+  <!-- ── HEADER ─────────────────────────────────── -->
+  <header class="wlc-header">
+    <div class="wlc-brand">
+      <div class="wlc-lotus-icon">♥</div>
+      <span class="wlc-brand-text">
+        <span class="wlc-gold-text">Rukmini</span>&nbsp;<span class="wlc-gold-text">Swayamvar</span>
+      </span>
+    </div>
+    <button class="wlc-back-btn" (click)="goBack()">← Back</button>
+  </header>
+
+  <!-- Decorative side hearts -->
+  <div class="wlc-side-heart-container wlc-left" aria-hidden="true">
+    <div class="wlc-heart-scene wlc-small-scene">
+      <div class="wlc-heart wlc-side-h"></div>
+    </div>
+  </div>
+  <div class="wlc-side-heart-container wlc-right" aria-hidden="true">
+    <div class="wlc-heart-scene wlc-small-scene">
+      <div class="wlc-heart wlc-side-h"></div>
+    </div>
+  </div>
+
+  <!-- ── MAIN ───────────────────────────────────── -->
+  <main class="wlc-main">
+
+    <!-- ❤️ CSS Heart with rings -->
+    <div class="wlc-heart-scene" aria-hidden="true">
+      <span class="wlc-ring wlc-r1"></span>
+      <span class="wlc-ring wlc-r2"></span>
+      <span class="wlc-ring wlc-r3"></span>
+
+      <div class="wlc-heart">
+        <!-- mini floating hearts -->
+        <span class="wlc-mh wlc-mh1">♥</span>
+        <span class="wlc-mh wlc-mh2">♥</span>
+        <span class="wlc-mh wlc-mh3">♥</span>
+        <span class="wlc-mh wlc-mh4">♥</span>
+      </div>
+    </div>
+
+    <!-- Text content -->
+    <div class="wlc-content">
+
+
+      <div class="wlc-badge wlc-anim-up" style="animation-delay:0.05s">
+        <!-- SVG praying hands – renders on all devices -->
+        <span class="wlc-badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Left hand -->
+            <path d="M10 19C10 19 5 15.5 5 10C5 7.5 6.5 6 8 6C8.8 6 9.5 6.5 10 7V13" stroke="#c2185b" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Right hand -->
+            <path d="M14 19C14 19 19 15.5 19 10C19 7.5 17.5 6 16 6C15.2 6 14.5 6.5 14 7V13" stroke="#c2185b"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Joined palms -->
+            <path d="M10 13C10 13 10 17 12 19C14 17 14 13 14 13" fill="rgba(233,30,99,0.15)" stroke="#c2185b"
+              stroke-width="1.5" stroke-linecap="round" />
+            <!-- Small glow dot at top -->
+            <circle cx="12" cy="4" r="1.2" fill="#e91e63" opacity="0.6" />
+          </svg>
+        </span>
+        <span class="wlc-badge-text">Namaste</span>
+      </div>
+
+
+      <h1 class="wlc-username wlc-anim-up" style="animation-delay:0.15s">
+        {{ username | titlecase }}
+      </h1>
+
+      <div class="wlc-divider wlc-anim-up" style="animation-delay:0.24s">
+        <span class="wlc-div-line"></span>
+        <span class="wlc-div-heart">♥</span>
+        <span class="wlc-div-line"></span>
+      </div>
+
+      <p class="wlc-subtitle wlc-anim-up" style="animation-delay:0.3s">
+        Your divine journey awaits.
+      </p>
+      <p class="wlc-sub2 wlc-anim-up" style="animation-delay:0.38s">
+        May this path bring love, blessings &amp; joy.
+      </p>
+
+      <div class="wlc-chips wlc-anim-up" style="animation-delay:0.48s">
+
+        <!-- Chip 1: Sacred Matches -->
+        <span class="wlc-chip">
+          <span class="wlc-chip-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="9" cy="9" r="6.5" stroke="#c2185b" stroke-width="2" />
+              <path d="M14 14L20 20" stroke="#c2185b" stroke-width="2.2" stroke-linecap="round" />
+              <path d="M7 9h4M9 7v4" stroke="#e91e63" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </span>
+          <span class="wlc-chip-label">Sacred Matches</span>
+        </span>
+
+        <!-- Chip 2: Trusted Platform -->
+        <span class="wlc-chip">
+          <span class="wlc-chip-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.9 8.26L22 9.27L17 14.14L18.18 21L12 17.77L5.82 21L7 14.14L2 9.27L9.1 8.26L12 2Z"
+                fill="#e91e63" stroke="#c2185b" stroke-width="1" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <span class="wlc-chip-label">Trusted Platform</span>
+        </span>
+
+        <!-- Chip 3: Divine Unions -->
+        <span class="wlc-chip">
+          <span class="wlc-chip-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 21C12 21 4 15 4 9.5C4 7 5.79 5 8.5 5C10.24 5 11.5 6 12 7C12.5 6 13.76 5 15.5 5C18.21 5 20 7 20 9.5C20 15 12 21 12 21Z"
+                fill="#f48fb1" stroke="#c2185b" stroke-width="1.5" stroke-linejoin="round" />
+              <path d="M12 21C12 21 4 15 4 9.5C4 7 5.79 5 8.5 5C10.24 5 11.5 6 12 7" fill="#e91e63" opacity="0.4" />
+            </svg>
+          </span>
+          <span class="wlc-chip-label">Divine Unions</span>
+        </span>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────── -->
+  <footer class="wlc-footer">
+    <p class="wlc-footer-hint">Ready to begin your sacred journey?</p>
+    <button class="wlc-continue-btn" (click)="continue()">
+      Continue &nbsp;→
+    </button>
+  </footer>
+
+</div>

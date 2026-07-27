@@ -1,0 +1,88 @@
+<div class="ce-page">
+  <header class="ce-header">
+    <button type="button" class="ce-back" (click)="goBack()" aria-label="Go back">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <div class="ce-header-text">
+      <h1>Community Events</h1>
+      <p>Meetups &amp; gatherings near you</p>
+    </div>
+    <div class="ce-spacer"></div>
+  </header>
+
+  <nav class="ce-tabs" aria-label="Event categories">
+    <button type="button" class="ce-tab" [class.active]="activeCategory === 'marriage'" (click)="setCategory('marriage')">
+      Marriage Meetups
+    </button>
+    <button type="button" class="ce-tab" [class.active]="activeCategory === 'religious'" (click)="setCategory('religious')">
+      Religious Gatherings
+    </button>
+  </nav>
+
+  <div class="ce-toggle-wrap">
+    <div class="ce-toggle">
+      <button type="button" class="ce-toggle-btn" [class.active]="timeFilter === 'upcoming'" (click)="setTimeFilter('upcoming')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+        Upcoming
+      </button>
+      <button type="button" class="ce-toggle-btn" [class.active]="timeFilter === 'past'" (click)="setTimeFilter('past')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+        Past
+      </button>
+    </div>
+  </div>
+
+  <main class="ce-main">
+    <p class="ce-status" *ngIf="isLoading">Loading events...</p>
+    <p class="ce-status ce-error" *ngIf="!isLoading && loadError">{{ loadError }}</p>
+
+    <article class="ce-card" *ngFor="let event of events" (click)="openDetail(event.id)">
+      <div class="ce-card-cover" [class.has-image]="!!event.coverImageUrl" [style.background]="event.coverGradient">
+        <img
+          *ngIf="event.coverImageUrl"
+          class="ce-cover-img"
+          [src]="event.coverImageUrl"
+          [alt]="event.title"
+          loading="lazy"
+          decoding="async"
+          (error)="onCoverError(event)" />
+        <span class="ce-cover-label" *ngIf="!event.coverImageUrl">{{ event.coverLabel }}</span>
+      </div>
+      <div class="ce-card-body">
+        <span class="ce-pill">{{ event.coverLabel }}</span>
+        <h2>{{ event.title }}</h2>
+        <p class="ce-meta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F33A6A" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          {{ formatDate(event.startAt) }}
+        </p>
+        <p class="ce-meta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F33A6A" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          {{ event.cityState }}
+        </p>
+        <p class="ce-desc">{{ event.description }}</p>
+      </div>
+    </article>
+
+    <p class="ce-empty" *ngIf="!isLoading && !loadError && events.length === 0">
+      No {{ timeFilter }} events in this category yet.
+    </p>
+  </main>
+</div>

@@ -1,0 +1,147 @@
+/* Form Styling */
+.form-group {
+  @apply relative;
+}
+
+.form-label {
+  @apply block text-sm font-bold text-pink-900 mb-1.5 tracking-wide;
+}
+
+.form-input {
+  @apply w-full px-4 py-2 border-2 border-pink-200 rounded-xl focus:outline-none focus:border-pink-600 focus:shadow-md transition-all text-gray-900 placeholder-gray-400 shadow-sm bg-white;
+}
+
+.text-capitalize::first-letter {
+  text-transform: uppercase;
+}
+
+.form-select {
+  @apply w-full px-4 py-2 border-2 border-pink-200 rounded-xl focus:outline-none focus:border-pink-600 focus:shadow-md transition-all text-gray-900 cursor-pointer bg-white appearance-none shadow-sm;
+}
+
+/* Radio Card Styling */
+.radio-card {
+  @apply flex-1 cursor-pointer;
+}
+
+.radio-label {
+  @apply block w-full px-4 py-2 border-2 border-pink-200 rounded-xl text-center font-semibold transition-all hover:border-pink-400 shadow-sm;
+}
+
+.radio-card input:checked+.radio-label {
+  @apply bg-gradient-to-r from-pink-500 to-rose-500 text-white border-pink-500;
+}
+
+/* Animations */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.4s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
+/* Popup Animations */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  70% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s ease-out;
+}
+
+/* Responsive Popup Styles */
+/* Remove photo button: above overlay so it receives clicks; visible on touch devices */
+.remove-photo-btn {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: none) {
+  .remove-photo-btn {
+    opacity: 1;
+  }
+}
+@media (max-width: 640px) {
+  .remove-photo-btn {
+    padding: 6px;
+    margin: -6px -6px 0 0;
+  }
+  .fixed.inset-0.z-50.flex.items-center.justify-center.p-4 {
+    padding: 1rem;
+  }
+
+  .relative.bg-white.rounded-2xl.shadow-2xl.max-w-md.w-full.mx-4 {
+    margin: 0.5rem;
+    max-width: calc(100vw - 2rem);
+  }
+
+  .flex.flex-col.sm\\:flex-row.gap-3.w-full {
+    flex-direction: column;
+  }
+
+  .text-2xl.font-bold.text-gray-900.mb-2.text-center {
+    font-size: 1.5rem;
+  }
+
+  .w-20.h-20.bg-green-100.rounded-full.flex.items-center.justify-center.mb-6 {
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 1.5rem;
+  }
+}

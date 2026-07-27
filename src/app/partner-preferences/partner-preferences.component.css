@@ -1,0 +1,376 @@
+.section-hint {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.badge-must {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #be185d;
+    background: #fce7f3;
+    padding: 0.15rem 0.45rem;
+    border-radius: 9999px;
+    margin-left: 0.35rem;
+    vertical-align: middle;
+}
+
+.completion-bar {
+    padding: 0.75rem 0;
+}
+
+.chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.chip {
+    padding: 0.45rem 0.9rem;
+    border-radius: 9999px;
+    border: 1px solid #fbcfe8;
+    background: #fff;
+    color: #4b5563;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.chip:hover {
+    border-color: #f472b6;
+}
+
+.chip-active {
+    background: linear-gradient(135deg, #ec4899, #f43f5e);
+    color: white;
+    border-color: transparent;
+}
+
+.matching-config input[type="range"] {
+    accent-color: #f33a6a;
+}
+
+.partner-pref-container {
+    min-height: 100vh;
+    padding-bottom: 5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 5%;
+  background: linear-gradient(135deg, #ec407a 0%, #f48fb1 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
+  box-sizing: border-box;
+}
+
+.page-header h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+}
+
+.back-btn {
+  background: white;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e775b2;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.back-btn:hover {
+  border-color: #f8bbd0;
+  color: #ec407a;
+  transform: translateX(-4px);
+  box-shadow: 0 4px 10px rgba(236, 64, 122, 0.15);
+}
+
+.header-placeholder {
+  width: 40px;
+}
+
+@keyframes bounce-slow {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-bounce-slow {
+    animation: bounce-slow 3s infinite ease-in-out;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.8s ease-out;
+}
+
+/* Range Slider Styling */
+.slider-container {
+    padding: 0 10px;
+    margin-bottom: 2rem;
+}
+
+.slider-wrapper {
+    position: relative;
+    height: 8px;
+    background: #FFDDE1;
+    border-radius: 10px;
+    margin: 2rem 0;
+}
+
+.dual-range {
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    z-index: 2;
+    outline: none;
+}
+
+.dual-range::-webkit-slider-thumb {
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background: white;
+    border: 4px solid #F33A6A;
+    cursor: pointer;
+    pointer-events: auto;
+    -webkit-appearance: none;
+    box-shadow: 0 4px 10px rgba(243, 58, 106, 0.3);
+    transition: transform 0.2s;
+}
+
+.dual-range::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.slider-track {
+    position: absolute;
+    height: 100%;
+    background: linear-gradient(90deg, #F33A6A, #E91E63);
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.slider-handle {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background: white;
+    border: 4px solid #F33A6A;
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Sections */
+.pref-section {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: fit-content; /* Shrink card to fit content as drawn */
+    min-width: 400px; /* Ensure a decent base width */
+    max-width: 100%;
+}
+
+.pref-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(243, 58, 106, 0.1);
+}
+
+.section-label {
+    color: #831843; /* Matches text-pink-900 from profile form */
+    font-weight: 700;
+    font-size: 1.125rem; /* Adjusted down slightly to match the image scale */
+    margin-bottom: 0.75rem;
+}
+
+.field-label {
+    color: #4b5563;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.custom-input {
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1F2937;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.custom-input:focus {
+    outline: none;
+    border-color: #F33A6A;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(243, 58, 106, 0.1);
+}
+
+.select-wrapper select {
+    appearance: none;
+    background-image: none;
+}
+
+.checkbox-card {
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+}
+
+.checkbox-card.selected {
+    border-color: #F33A6A;
+    background: #FFF5F7;
+}
+
+.checkbox-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #D1D5DB;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.selected .checkbox-box {
+    background: #F33A6A;
+    border-color: #F33A6A;
+}
+
+/* Background Hearts */
+.heart-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    color: rgba(243, 58, 106, 0.05); /* Very subtle heart color */
+}
+
+
+/* Modals */
+.animate-scale-in {
+    animation: scale-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Scrollbar Style */
+.dropdown-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dropdown-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.dropdown-list::-webkit-scrollbar-thumb {
+    background: #F33A6A;
+    border-radius: 10px;
+}
+
+.dropdown-list::-webkit-scrollbar-thumb:hover {
+    background: #D62D59;
+}
+
+/* Age number inputs styled like static values */
+/* Age number inputs styled for compactness */
+.age-input {
+    border: none;
+    width: 60px; /* Further reduced width to pull spin buttons closer */
+    padding: 0;
+    margin: 0;
+}
+
+/* Ensure spin buttons are visible and properly aligned */
+.age-input::-webkit-outer-spin-button,
+.age-input::-webkit-inner-spin-button {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.range-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: fit-content; /* Shrink to fit content as drawn */
+    min-width: 120px; /* Sensible minimum */
+}
+
+.range-input input {
+    margin-top: 4px;
+}
+
+.range-grid {
+    display: flex; /* Switch to flex for tighter layout */
+    gap: 1rem;
+    flex-wrap: wrap;
+}

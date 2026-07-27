@@ -1,0 +1,287 @@
+<div class="chat-detail-container">
+  <!-- Header -->
+  <header class="chat-header">
+    <div class="header-left">
+      <button class="back-btn" (click)="onBack()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <div class="user-info">
+        <div class="user-avatar-wrap">
+          <img *ngIf="currentUser.avatar && !headerAvatarFailed" [src]="currentUser.avatar" [alt]="currentUser.name" class="user-avatar" (error)="headerAvatarFailed = true">
+          <span *ngIf="!currentUser.avatar || headerAvatarFailed" class="user-avatar user-avatar-placeholder" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </span>
+        </div>
+        <div class="user-details">
+          <h3 class="user-name">{{ currentUser.name }}</h3>
+          <span class="user-status" *ngIf="currentUser.isOnline">Online</span>
+        </div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-menu-wrap">
+        <button type="button" class="header-menu-trigger" (click)="toggleHeaderMenu($event)" aria-label="More options" [attr.aria-expanded]="headerMenuOpen" aria-haspopup="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <circle cx="12" cy="5" r="2"/>
+            <circle cx="12" cy="12" r="2"/>
+            <circle cx="12" cy="19" r="2"/>
+          </svg>
+        </button>
+        <ul class="header-dropdown" *ngIf="headerMenuOpen" role="menu">
+          <li role="none"><button type="button" class="header-dropdown-item" role="menuitem" (click)="onHeaderMenuSelect('block')">Block</button></li>
+          <li role="none"><button type="button" class="header-dropdown-item" role="menuitem" (click)="onHeaderMenuSelect('unblock')">Unblock</button></li>
+          <li role="none"><button type="button" class="header-dropdown-item" role="menuitem" (click)="onHeaderMenuSelect('report')">Report</button></li>
+          <li role="none"><button type="button" class="header-dropdown-item" role="menuitem" (click)="onHeaderMenuSelect('theme')">Theme</button></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Not connected: Connect to message button -->
+  <div class="chat-connect-block" *ngIf="connectionStatus === 'none'">
+    <button type="button" class="connect-to-message-btn" (click)="connectToMessage()" [disabled]="connectRequestSending">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+      </svg>
+      {{ connectRequestSending ? 'Sending...' : 'Connect to message' }}
+    </button>
+  </div>
+
+  <!-- Pending request: one message allowed -->
+  <div class="chat-request-sent-bar" *ngIf="connectionStatus === 'pending_sent'">
+    <p>Connection request sent. You can send one message until they accept.</p>
+  </div>
+
+  <!-- Request received: they must accept in Request tab before messaging -->
+  <div class="chat-connect-block chat-request-received" *ngIf="connectionStatus === 'pending_received'">
+    <p class="request-received-text">You have a connection request from this person.</p>
+    <p class="request-received-hint">Go to <strong>Messages → Request</strong> and click <strong>Accept</strong> to start messaging.</p>
+    <button type="button" class="connect-to-message-btn back-to-messages-btn" (click)="onBack()">Back to Messages</button>
+  </div>
+
+  <!-- Themed: messages + input only (header unchanged) -->
+  <div
+    *ngIf="connectionStatus === 'connected' || connectionStatus === 'pending_sent'"
+    [ngClass]="appliedThemeClasses"
+    [ngStyle]="appliedThemeStyles"
+    [attr.data-bg-mode]="appliedBgMode">
+    <div class="chat-messages" #messagesContainer>
+      <div class="message" *ngFor="let msg of messages" [class.me]="msg.isMe">
+        <div class="message-bubble">
+          <p class="message-text">{{ msg.text }}</p>
+          <span class="message-time">{{ msg.time }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input-container">
+      <input #fileInput type="file" class="file-input-hidden" (change)="onFilesSelected($event)" multiple aria-hidden="true" tabindex="-1">
+      <button class="attach-btn" type="button" (click)="openFilePicker(fileInput)" aria-label="Attach file">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/>
+        </svg>
+      </button>
+      <input
+        type="text"
+        class="chat-input"
+        [placeholder]="connectionStatus === 'pending_sent' && hasSentIntroMessage ? 'Wait for them to accept' : 'Type a message...'"
+        [(ngModel)]="newMessage"
+        [readonly]="connectionStatus === 'pending_sent' && hasSentIntroMessage"
+        (keypress)="onKeyPress($event)">
+      <button type="button" class="send-btn" (click)="sendMessage()"
+        [disabled]="connectionStatus === 'pending_sent' && hasSentIntroMessage">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Theme settings modal -->
+  <div class="theme-modal-backdrop" *ngIf="themeModalOpen" (click)="cancelThemeModal()" role="presentation">
+    <div class="theme-modal-panel" (click)="$event.stopPropagation()" role="dialog" aria-modal="true" aria-labelledby="theme-modal-title">
+      <div class="theme-modal-header">
+        <h2 id="theme-modal-title" class="theme-modal-title">Chat theme</h2>
+        <button type="button" class="theme-modal-close" (click)="cancelThemeModal()" aria-label="Close">×</button>
+      </div>
+
+      <div class="theme-modal-scroll">
+        <section class="theme-section">
+          <h3 class="theme-section-title">Chat background</h3>
+          <div class="theme-chip-row">
+            <button type="button" class="theme-chip" [class.active]="draftTheme.background === 'default'" (click)="setDraft({ background: 'default' })">Default</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.background === 'light'" (click)="setDraft({ background: 'light' })">Light</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.background === 'lightPink'" (click)="setDraft({ background: 'lightPink' })">Light pink</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.background === 'darkBg'" (click)="setDraft({ background: 'darkBg' })">Dark</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.background === 'gradient'" (click)="setDraft({ background: 'gradient' })">Gradient</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.background === 'purple'" (click)="setDraft({ background: 'purple' })">Purple</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.background === 'dots'" (click)="setDraft({ background: 'dots' })" title="Dots pattern">Dots</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.background === 'hearts'" (click)="setDraft({ background: 'hearts' })" title="Heart pattern — great for matrimonial chats">Hearts</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.background === 'lines'" (click)="setDraft({ background: 'lines' })" title="Minimal lines pattern">Lines</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.background === 'floral'" (click)="setDraft({ background: 'floral' })" title="Floral pattern (subtle)">Floral</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.background === 'image'" (click)="setDraft({ background: 'image' })">Image</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.background === 'sunset'" (click)="setDraft({ background: 'sunset' })" title="Warm sunset gradient with glass-style bubbles">Sunset</button>
+          </div>
+          <div class="theme-wallpaper-row" *ngIf="draftTheme.background === 'image'">
+            <input #wallpaperInput type="file" accept="image/*" class="file-input-hidden" (change)="onWallpaperSelected($event)">
+            <button type="button" class="theme-secondary-btn" (click)="wallpaperInput.click()">Choose image</button>
+            <button type="button" class="theme-secondary-btn" *ngIf="draftTheme.wallpaperDataUrl" (click)="clearWallpaper()">Remove</button>
+          </div>
+        </section>
+
+        <section class="theme-section">
+          <h3 class="theme-section-title">Message bubbles</h3>
+          <p class="theme-label">Color</p>
+          <div class="theme-chip-row">
+            <button type="button" class="theme-chip" [class.active]="draftTheme.bubbleColor === 'pink'" (click)="setDraft({ bubbleColor: 'pink' })">Pink</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.bubbleColor === 'blue'" (click)="setDraft({ bubbleColor: 'blue' })">Blue</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.bubbleColor === 'green'" (click)="setDraft({ bubbleColor: 'green' })">Green</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.bubbleColor === 'purple'" (click)="setDraft({ bubbleColor: 'purple' })">Purple</button>
+          </div>
+          <p class="theme-label">Shape</p>
+          <div class="theme-chip-row">
+            <button type="button" class="theme-chip" [class.active]="draftTheme.bubbleShape === 'rounded'" (click)="setDraft({ bubbleShape: 'rounded' })">Rounded</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.bubbleShape === 'sharp'" (click)="setDraft({ bubbleShape: 'sharp' })">Sharp</button>
+          </div>
+          <p class="theme-label">Size</p>
+          <div class="theme-chip-row">
+            <button type="button" class="theme-chip" [class.active]="draftTheme.bubbleSize === 'small'" (click)="setDraft({ bubbleSize: 'small' })">Small</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.bubbleSize === 'medium'" (click)="setDraft({ bubbleSize: 'medium' })">Medium</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.bubbleSize === 'large'" (click)="setDraft({ bubbleSize: 'large' })">Large</button>
+          </div>
+        </section>
+
+        <section class="theme-section theme-section-row">
+          <div class="theme-toggle-label">
+            <span>Dark mode</span>
+            <span class="theme-hint">Dark background &amp; light text</span>
+          </div>
+          <label class="theme-switch">
+            <input type="checkbox" [checked]="draftTheme.darkMode" (change)="setDraft({ darkMode: $any($event.target).checked })">
+            <span class="theme-switch-slider"></span>
+          </label>
+        </section>
+
+        <section class="theme-section">
+          <h3 class="theme-section-title">Font</h3>
+          <p class="theme-label">Size</p>
+          <div class="theme-chip-row">
+            <button type="button" class="theme-chip" [class.active]="draftTheme.fontSize === 'small'" (click)="setDraft({ fontSize: 'small' })">Small</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.fontSize === 'medium'" (click)="setDraft({ fontSize: 'medium' })">Medium</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.fontSize === 'large'" (click)="setDraft({ fontSize: 'large' })">Large</button>
+          </div>
+          <p class="theme-label">Family</p>
+          <div class="theme-chip-row">
+            <button type="button" class="theme-chip" [class.active]="draftTheme.fontFamily === 'system'" (click)="setDraft({ fontFamily: 'system' })">System</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.fontFamily === 'serif'" (click)="setDraft({ fontFamily: 'serif' })">Serif</button>
+            <button type="button" class="theme-chip" [class.active]="draftTheme.fontFamily === 'mono'" (click)="setDraft({ fontFamily: 'mono' })">Mono</button>
+          </div>
+        </section>
+
+        <section class="theme-section">
+          <h3 class="theme-section-title">Live preview</h3>
+          <div class="theme-preview-mini" [ngClass]="draftPreviewClasses" [ngStyle]="draftThemeStyles" [attr.data-bg-mode]="draftBgMode">
+            <div class="message" *ngFor="let pv of previewMessages" [class.me]="pv.isMe">
+              <div class="message-bubble">
+                <p class="message-text">{{ pv.text }}</p>
+                <span class="message-time">{{ pv.time }}</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="theme-modal-actions">
+        <button type="button" class="theme-btn-cancel" (click)="cancelThemeModal()">Cancel</button>
+        <button type="button" class="theme-btn-apply" (click)="applyThemeModal()">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Report Modal -->
+  <div
+    class="report-modal-backdrop"
+    *ngIf="reportModalOpen"
+    (click)="closeReportModal()"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Report user dialog">
+    <div class="report-modal" (click)="$event.stopPropagation()">
+      <h3 class="report-modal-title">Report user</h3>
+      <p class="report-modal-subtitle">Tell us what is wrong. Our team will review this report.</p>
+
+      <div class="report-section-label">Reason</div>
+      <div class="report-reasons-list">
+        <label class="report-reason-item" *ngFor="let reason of reportReasons">
+          <input
+            type="radio"
+            name="reportReason"
+            class="report-radio"
+            [checked]="selectedReportReason === reason"
+            (change)="setReportReason(reason)" />
+          <span>{{ reason }}</span>
+        </label>
+      </div>
+
+      <div class="report-details-wrap">
+        <label for="reportDetails" class="report-section-label">Details (optional)</label>
+        <textarea
+          id="reportDetails"
+          class="report-details-input"
+          [value]="reportDetails"
+          [attr.maxlength]="reportDetailsMaxLength"
+          (input)="onReportDetailsInput($any($event.target).value)">
+        </textarea>
+        <div class="report-char-count">{{ reportDetails.length }}/{{ reportDetailsMaxLength }}</div>
+      </div>
+
+      <div class="report-modal-actions">
+        <button type="button" class="report-action-btn ghost" (click)="closeReportModal()">Cancel</button>
+        <button type="button" class="report-action-btn primary" [disabled]="reportSubmitting" (click)="submitReport()">
+          {{ reportSubmitting ? 'Submitting...' : 'Submit' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Block Modal -->
+  <div
+    class="block-modal-backdrop"
+    *ngIf="blockModalOpen"
+    (click)="closeBlockModal()"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Block user dialog">
+    <div class="block-modal" (click)="$event.stopPropagation()">
+      <h3 class="block-modal-title">Block user</h3>
+      <p class="block-modal-subtitle">
+        They will not be able to message you or appear in your matches. You can unblock them later from Settings.
+      </p>
+
+      <div class="block-reason-wrap">
+        <label for="blockReason" class="block-section-label">Reason (optional)</label>
+        <textarea
+          id="blockReason"
+          class="block-reason-input"
+          [value]="blockReason"
+          [attr.maxlength]="blockReasonMaxLength"
+          (input)="onBlockReasonInput($any($event.target).value)">
+        </textarea>
+        <div class="block-char-count">{{ blockReason.length }}/{{ blockReasonMaxLength }}</div>
+      </div>
+
+      <div class="block-modal-actions">
+        <button type="button" class="block-action-btn ghost" (click)="closeBlockModal()">Cancel</button>
+        <button type="button" class="block-action-btn primary" [disabled]="blockSubmitting" (click)="submitBlock()">
+          {{ blockSubmitting ? 'Blocking...' : 'Block' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

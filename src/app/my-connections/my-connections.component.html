@@ -1,0 +1,129 @@
+<div class="connections-view">
+  <header class="connections-header">
+    <button class="back-btn" type="button" (click)="onBack()" aria-label="Go back">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <h1 class="connections-title">My Connections</h1>
+    <button class="refresh-btn" type="button" (click)="refreshAll()" aria-label="Refresh" [disabled]="loading">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        [class.spinning]="loading">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <polyline points="1 20 1 14 7 14"></polyline>
+        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+      </svg>
+    </button>
+  </header>
+
+  <main class="connections-main">
+    <div class="tabs-row" role="tablist" aria-label="Connection filters">
+      <button type="button" class="tab-pill" role="tab" [class.active]="activeTab === 'connected'"
+        [attr.aria-selected]="activeTab === 'connected'" (click)="setTab('connected')">
+        Connected
+      </button>
+      <button type="button" class="tab-pill" role="tab" [class.active]="activeTab === 'requests'"
+        [attr.aria-selected]="activeTab === 'requests'" (click)="setTab('requests')">
+        Requests
+        <span class="tab-badge" *ngIf="requestsList.length > 0">{{ requestsList.length }}</span>
+      </button>
+      <button type="button" class="tab-pill" role="tab" [class.active]="activeTab === 'sent'"
+        [attr.aria-selected]="activeTab === 'sent'" (click)="setTab('sent')">
+        Sent
+        <span class="tab-badge" *ngIf="sentList.length > 0">{{ sentList.length }}</span>
+      </button>
+    </div>
+
+    <div class="connections-panel">
+      <div class="loading-state" *ngIf="loading && currentList.length === 0">
+        <p>Loading connections...</p>
+      </div>
+
+      <div class="connections-list" *ngIf="!loading || currentList.length > 0">
+        <article class="connection-row" *ngFor="let item of currentList"
+          (click)="viewProfileDetail(item)">
+          <div class="row-avatar">
+            <img *ngIf="!showProfileIcon(item)" [src]="item.avatar" [alt]="item.name"
+              (error)="markAvatarFailed(item.id)" loading="lazy">
+            <span *ngIf="showProfileIcon(item)" class="avatar-placeholder" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+              </svg>
+            </span>
+          </div>
+
+          <div class="row-body">
+            <div class="row-top">
+              <h3 class="row-name">{{ item.name }}</h3>
+              <span class="row-date" *ngIf="item.dateLabel">{{ item.dateLabel }}</span>
+            </div>
+            <p class="row-subtitle">{{ item.subtitle }}</p>
+
+            <div class="row-actions" *ngIf="activeTab === 'requests'" (click)="$event.stopPropagation()">
+              <button type="button" class="action-decline" (click)="declineRequest(item, $event)">Decline</button>
+              <button type="button" class="action-accept" (click)="acceptRequest(item, $event)">Accept</button>
+            </div>
+          </div>
+
+          <div class="row-menu-wrap" (click)="$event.stopPropagation()">
+            <button type="button" class="menu-btn" aria-label="More options"
+              (click)="toggleMenu(item.id, $event)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="5" r="1.6"></circle>
+                <circle cx="12" cy="12" r="1.6"></circle>
+                <circle cx="12" cy="19" r="1.6"></circle>
+              </svg>
+            </button>
+            <div class="menu-dropdown" *ngIf="menuOpenId === item.id">
+              <button type="button" (click)="viewProfileDetail(item, $event)">View profile</button>
+              <button type="button" *ngIf="activeTab === 'connected'" (click)="messageMember(item, $event)">Message</button>
+              <button type="button" class="menu-danger" *ngIf="activeTab === 'sent'"
+                (click)="withdrawRequest(item, $event)">Withdraw request</button>
+              <button type="button" *ngIf="activeTab === 'requests'" (click)="acceptRequest(item, $event)">Accept</button>
+              <button type="button" class="menu-danger" *ngIf="activeTab === 'requests'"
+                (click)="declineRequest(item, $event)">Decline</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Empty: Connected -->
+      <div class="empty-state" *ngIf="!loading && activeTab === 'connected' && connectedList.length === 0">
+        <div class="empty-icon">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+        </div>
+        <h2>No connections yet</h2>
+        <p>When you accept a connection request, it appears here.</p>
+        <button type="button" class="empty-cta" (click)="onBack()">Discover Matches</button>
+      </div>
+
+      <!-- Empty: Requests -->
+      <div class="empty-state" *ngIf="!loading && activeTab === 'requests' && requestsList.length === 0">
+        <div class="empty-icon">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <h2>No pending requests</h2>
+        <p>When someone sends you a connection request, it appears here.</p>
+      </div>
+
+      <!-- Empty: Sent -->
+      <div class="empty-state" *ngIf="!loading && activeTab === 'sent' && sentList.length === 0">
+        <div class="empty-icon">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </div>
+        <h2>No sent requests</h2>
+        <p>Connection requests you send will show up here while waiting for a response.</p>
+      </div>
+    </div>
+  </main>
+</div>

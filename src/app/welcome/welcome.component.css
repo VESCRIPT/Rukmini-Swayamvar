@@ -1,0 +1,659 @@
+/* ═══════════════════════════════════════════════════════
+   WELCOME – Baby pink · Pure-CSS animated heart
+   ═══════════════════════════════════════════════════════ */
+
+/* ── PAGE ───────────────────────────────────────────── */
+.wlc-page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fce4ec;
+  overflow: hidden;
+  font-family: 'Cinzel', 'Georgia', serif;
+}
+
+/* ── HEADER ──────────────────────────────────────────*/
+.wlc-header {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(11px, 2vh, 17px) clamp(16px, 4vw, 42px);
+  background: rgba(255, 224, 232, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(200, 60, 100, 0.18);
+  flex-shrink: 0;
+}
+
+.wlc-brand {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.5vw, 12px);
+}
+
+/* Small ♥ logo icon */
+.wlc-lotus-icon {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  color: #e91e63;
+  line-height: 1;
+  animation: wlcLogoHB 1.3s ease-in-out infinite;
+  filter: drop-shadow(0 2px 5px rgba(233, 30, 99, 0.45));
+}
+
+@keyframes wlcLogoHB {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  14% {
+    transform: scale(1.30);
+  }
+
+  28% {
+    transform: scale(1.05);
+  }
+
+  42% {
+    transform: scale(1.18);
+  }
+
+  60% {
+    transform: scale(1);
+  }
+}
+
+.wlc-brand-text {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.9rem, 2.4vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+/* Gold shimmer on both words */
+.wlc-gold-text {
+  background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728, #fcf6ba, #bf953f);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: wlcGoldShine 2.8s linear infinite;
+}
+
+@keyframes wlcGoldShine {
+  to {
+    background-position: 250% center;
+  }
+}
+
+.wlc-back-btn {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1.5px solid rgba(180, 50, 80, 0.28);
+  color: #7b1535;
+  border-radius: 50px;
+  padding: clamp(7px, 1.5vh, 11px) clamp(14px, 2.8vw, 26px);
+  font-size: clamp(0.78rem, 1.8vw, 0.92rem);
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.22s, border-color 0.22s, transform 0.22s;
+  white-space: nowrap;
+}
+
+.wlc-back-btn:hover {
+  background: rgba(255, 200, 215, 0.70);
+  border-color: rgba(180, 50, 80, 0.55);
+  transform: translateX(-3px);
+}
+
+/* ── MAIN ────────────────────────────────────────────*/
+.wlc-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 2vh, 20px) clamp(14px, 5vw, 40px);
+  text-align: center;
+  gap: clamp(10px, 2vh, 20px);
+}
+
+/* ═══════════════════════════════════════════════════
+   ❤️  PURE CSS HEART  (no SVG, no Angular sanitizing)
+   ═══════════════════════════════════════════════════ */
+.wlc-heart-scene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(140px, 22vw, 200px);
+  height: clamp(130px, 20vw, 185px);
+  flex-shrink: 0;
+}
+
+/* Side decorative hearts styling */
+.wlc-side-heart-container {
+  position: absolute;
+  pointer-events: none;
+  z-index: 5;
+  filter: blur(0.5px);
+}
+
+.wlc-side-heart-container.wlc-left {
+  left: clamp(10px, 4vw, 60px);
+  top: 38%;
+  animation: wlcSideFloatLeft 6s ease-in-out infinite alternate;
+}
+
+.wlc-side-heart-container.wlc-right {
+  right: clamp(10px, 4vw, 60px);
+  top: 52%;
+  animation: wlcSideFloatRight 7s ease-in-out infinite alternate;
+}
+
+.wlc-small-scene {
+  transform: scale(0.35);
+  opacity: 0.65;
+}
+
+.wlc-side-h {
+  animation-duration: 2s !important; /* Slightly slower beat */
+}
+
+@keyframes wlcSideFloatLeft {
+  from { transform: translate(0, 0) rotate(-8deg); }
+  to { transform: translate(15px, -25px) rotate(5deg); }
+}
+
+@keyframes wlcSideFloatRight {
+  from { transform: translate(0, 0) rotate(8deg); }
+  to { transform: translate(-15px, -30px) rotate(-5deg); }
+}
+
+/* Expanding pulse rings around the heart */
+.wlc-ring {
+  position: absolute;
+  inset: 5%;
+  border-radius: 50%;
+  border: 2px solid rgba(233, 30, 99, 0.50);
+  animation: wlcRingPulse 2.4s ease-out infinite;
+}
+
+.wlc-r1 {
+  animation-delay: 0s;
+  border-color: rgba(233, 30, 99, 0.55);
+}
+
+.wlc-r2 {
+  animation-delay: 0.8s;
+  border-color: rgba(233, 30, 99, 0.35);
+}
+
+.wlc-r3 {
+  animation-delay: 1.6s;
+  border-color: rgba(233, 30, 99, 0.18);
+}
+
+@keyframes wlcRingPulse {
+  0% {
+    transform: scale(0.50);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(2.00);
+    opacity: 0;
+  }
+}
+
+/* The CSS heart shape */
+.wlc-heart {
+  position: relative;
+  z-index: 2;
+  width: clamp(80px, 13vw, 120px);
+  height: clamp(72px, 12vw, 108px);
+  animation: wlcHeartBeat 1.25s ease-in-out infinite;
+  filter: drop-shadow(0 8px 24px rgba(233, 30, 99, 0.55));
+}
+
+/* Classic CSS heart via ::before / ::after */
+.wlc-heart::before,
+.wlc-heart::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 80%;
+  border-radius: 50% 50% 0 0;
+  background: linear-gradient(160deg, #ff80ab 0%, #e91e63 50%, #c2185b 100%);
+  animation: wlcHeartColor 3.5s ease-in-out infinite alternate;
+}
+
+.wlc-heart::before {
+  left: 50%;
+  transform-origin: 0% 100%;
+  transform: rotate(-45deg);
+}
+
+.wlc-heart::after {
+  left: 0;
+  transform-origin: 100% 100%;
+  transform: rotate(45deg);
+}
+
+/* Heart beat – realistic double-thump */
+@keyframes wlcHeartBeat {
+  0% {
+    transform: scale(1);
+  }
+
+  14% {
+    transform: scale(1.22);
+  }
+
+  28% {
+    transform: scale(1.02);
+  }
+
+  42% {
+    transform: scale(1.14);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Color cycle on the heart */
+@keyframes wlcHeartColor {
+  0% {
+    background: linear-gradient(160deg, #ff80ab 0%, #e91e63 50%, #c2185b 100%);
+  }
+
+  50% {
+    background: linear-gradient(160deg, #f48fb1 0%, #f06292 50%, #e91e63 100%);
+  }
+
+  100% {
+    background: linear-gradient(160deg, #e91e63 0%, #c2185b 50%, #880e4f 100%);
+  }
+}
+
+/* Tiny ♥ hearts that float upward from the heart */
+.wlc-mh {
+  position: absolute;
+  color: #e91e63;
+  font-size: clamp(0.65rem, 1.3vw, 0.9rem);
+  opacity: 0;
+  animation: wlcMiniFloat 2.8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.wlc-mh1 {
+  bottom: 0;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.wlc-mh2 {
+  top: 5%;
+  left: 12%;
+  animation-delay: 0.7s;
+}
+
+.wlc-mh3 {
+  top: 8%;
+  right: 10%;
+  animation-delay: 1.4s;
+}
+
+.wlc-mh4 {
+  bottom: 5%;
+  right: 8%;
+  animation-delay: 2.1s;
+}
+
+@keyframes wlcMiniFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-38px) scale(1.3);
+  }
+}
+
+/* ── CONTENT ─────────────────────────────────────────*/
+.wlc-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: min(640px, 94vw);
+}
+
+/* Namaste badge */
+.wlc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(6px, 1.2vw, 10px);
+  background: rgba(255, 255, 255, 0.58);
+  border: 1.5px solid rgba(200, 50, 90, 0.28);
+  color: #9c1040;
+  border-radius: 50px;
+  padding: clamp(7px, 1.5vh, 12px) clamp(18px, 4vw, 30px);
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.06em;
+  margin-bottom: clamp(8px, 1.6vh, 14px);
+  box-shadow: 0 2px 12px rgba(220, 60, 100, 0.10);
+  transition: box-shadow 0.22s;
+}
+
+.wlc-badge:hover {
+  box-shadow: 0 4px 18px rgba(220, 60, 100, 0.20);
+}
+
+/* SVG icon inside badge */
+.wlc-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: clamp(18px, 3vw, 26px);
+  height: clamp(18px, 3vw, 26px);
+}
+
+.wlc-badge-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Namaste text */
+.wlc-badge-text {
+  font-size: clamp(0.78rem, 1.8vw, 0.98rem);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Username */
+.wlc-username {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.9rem, 5.5vw, 3rem);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  margin: 0 0 clamp(8px, 1.5vh, 14px) 0;
+  background: linear-gradient(135deg, #7b1535, #c2185b, #880e2f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.15;
+}
+
+/* ♥ divider line */
+.wlc-divider {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 2.5vw, 18px);
+  width: clamp(180px, 55%, 380px);
+  margin-bottom: clamp(8px, 1.5vh, 14px);
+}
+
+.wlc-div-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 60, 100, 0.45), transparent);
+}
+
+.wlc-div-heart {
+  color: #e91e63;
+  font-size: 1rem;
+  animation: wlcDivPop 1.3s ease-in-out infinite;
+}
+
+@keyframes wlcDivPop {
+
+  0%,
+  100% {
+    transform: scale(1);
+    color: #e91e63;
+  }
+
+  40% {
+    transform: scale(1.5);
+    color: #c2185b;
+  }
+}
+
+/* Subtitles */
+.wlc-subtitle {
+  color: rgba(90, 20, 40, 0.85);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(0.88rem, 2vw, 1.06rem);
+  font-style: italic;
+  margin: 0 0 4px 0;
+  line-height: 1.55;
+}
+
+.wlc-sub2 {
+  color: rgba(130, 40, 65, 0.58);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(0.74rem, 1.6vw, 0.86rem);
+  font-style: italic;
+  margin: 0 0 clamp(12px, 2vh, 20px) 0;
+}
+
+/* Feature chips */
+.wlc-chips {
+  display: flex;
+  gap: clamp(6px, 1.5vw, 10px);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.wlc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(5px, 1vw, 8px);
+  background: rgba(255, 255, 255, 0.52);
+  border: 1px solid rgba(200, 60, 100, 0.22);
+  color: rgba(110, 20, 50, 0.80);
+  border-radius: 50px;
+  padding: clamp(6px, 1.2vh, 10px) clamp(12px, 2.8vw, 20px);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.66rem, 1.5vw, 0.78rem);
+  letter-spacing: 0.04em;
+  cursor: default;
+  transition: background 0.22s, transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+}
+
+.wlc-chip:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(200, 60, 100, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 60, 100, 0.15);
+}
+
+/* SVG icon inside chip */
+.wlc-chip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: clamp(14px, 2.2vw, 18px);
+  height: clamp(14px, 2.2vw, 18px);
+}
+
+.wlc-chip-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.wlc-chip-label {
+  white-space: nowrap;
+}
+
+/* ── FOOTER ──────────────────────────────────────────*/
+.wlc-footer {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: clamp(10px, 1.8vh, 16px) clamp(16px, 4vw, 42px) clamp(14px, 2.5vh, 22px);
+  border-top: 1px solid rgba(200, 60, 100, 0.14);
+  background: rgba(255, 224, 232, 0.88);
+  backdrop-filter: blur(10px);
+  flex-shrink: 0;
+}
+
+.wlc-footer-hint {
+  color: rgba(130, 40, 65, 0.58);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(0.72rem, 1.6vw, 0.86rem);
+  margin: 0;
+}
+
+.wlc-continue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #e91e63, #ad1457);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: clamp(12px, 2vh, 16px) clamp(26px, 4.5vw, 42px);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.82rem, 1.8vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: transform 0.28s, box-shadow 0.28s;
+  box-shadow: 0 6px 22px rgba(233, 30, 99, 0.40);
+  animation: wlcPulse 2.6s infinite;
+}
+
+.wlc-continue-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 14px 30px rgba(233, 30, 99, 0.55);
+}
+
+@keyframes wlcPulse {
+  0% {
+    box-shadow: 0 6px 22px rgba(233, 30, 99, 0.40), 0 0 0 0 rgba(233, 30, 99, 0.45);
+  }
+
+  70% {
+    box-shadow: 0 6px 22px rgba(233, 30, 99, 0.40), 0 0 0 14px rgba(233, 30, 99, 0);
+  }
+
+  100% {
+    box-shadow: 0 6px 22px rgba(233, 30, 99, 0.40), 0 0 0 0 rgba(233, 30, 99, 0);
+  }
+}
+
+/* ── SHARED ANIMATIONS ───────────────────────────────*/
+.wlc-anim-up {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: wlcFadeUp 0.55s ease-out both;
+}
+
+@keyframes wlcFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ═══ RESPONSIVE ════════════════════════════════════*/
+@media (max-width: 768px) {
+  .wlc-page {
+    position: relative;
+    min-height: 100dvh;
+    overflow-y: auto;
+  }
+
+  .wlc-footer {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .wlc-continue-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .wlc-footer-hint {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .wlc-chips {
+    gap: 6px;
+  }
+
+  .wlc-chip {
+    padding: 7px 12px;
+    font-size: 0.66rem;
+  }
+
+  .wlc-divider {
+    width: 88%;
+  }
+}
+
+/* Extra small: icon-only chips */
+@media (max-width: 360px) {
+  .wlc-chip-label {
+    display: none;
+  }
+
+  .wlc-chip {
+    padding: 8px 10px;
+    border-radius: 50%;
+  }
+
+  .wlc-chip-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .wlc-heart-scene {
+    width: 80px;
+    height: 75px;
+  }
+
+  .wlc-heart {
+    width: 55px;
+    height: 50px;
+  }
+
+  .wlc-main {
+    gap: 6px;
+  }
+}

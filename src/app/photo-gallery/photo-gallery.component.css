@@ -1,0 +1,351 @@
+.gallery-container {
+    min-height: 100vh;
+    background: #fce4ec;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 5%;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(135deg, #ec407a 0%, #f48fb1 100%);
+    z-index: 100;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.back-btn {
+    background: white;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e775b2;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.back-btn:hover {
+    border-color: #f8bbd0;
+    color: #ec407a;
+    transform: translateX(-4px);
+    box-shadow: 0 4px 10px rgba(236, 64, 122, 0.15);
+}
+
+.header h1 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+}
+
+.placeholder {
+    width: 42px;
+}
+
+.add-icon-btn {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15vh;
+    text-align: center;
+}
+
+.empty-icon-wrapper {
+    margin-bottom: 1.5rem;
+}
+
+.no-photos-text {
+    font-size: 1.1rem;
+    color: #4A5568;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.add-photo-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2.5rem;
+    background: #F33A6A;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(243, 58, 106, 0.3);
+    transition: all 0.2s;
+}
+
+.add-photo-btn:active {
+    transform: scale(0.95);
+}
+
+.plus-icon {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.add-photo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #fce4ec;
+    border: 2px dashed #ec407a;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #ec407a;
+}
+
+.add-photo-card:hover {
+    background: #f8bbd0;
+    border-color: #F33A6A;
+    transform: scale(1.02);
+}
+
+.add-photo-card span {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #ec407a;
+}
+
+/* Photo Grid */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 1rem;
+}
+
+.photo-card {
+    aspect-ratio: 1/1;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f8f9fa;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.profile-photo-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ec407a 0%, #f06292 100%);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(236, 64, 122, 0.3);
+}
+
+.profile-photo-badge .star {
+    font-size: 0.78rem;
+    line-height: 1;
+}
+
+.set-profile-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: calc(100% - 18px);
+    border: none;
+    border-radius: 10px;
+    background: rgba(18, 18, 18, 0.86);
+    color: #fff;
+    padding: 10px 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.set-profile-btn:hover {
+    background: rgba(18, 18, 18, 0.95);
+}
+
+.remove-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s;
+    opacity: 0.8;
+}
+
+.remove-btn:hover {
+    background: #F33A6A;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Section Title */
+.section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #333;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+}
+
+/* Pending Approval Section */
+.pending-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.pending-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #F33A6A;
+    margin: 0 0 1rem 0;
+    padding: 0 0.5rem;
+}
+
+.pending-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.pending-card {
+    aspect-ratio: 1/1;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f8f9fa;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    border: 2px solid rgba(243, 58, 106, 0.2);
+}
+
+.pending-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    opacity: 0.7;
+}
+
+.pending-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(243, 58, 106, 0.9);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+}
+
+.pending-card .remove-btn {
+    top: 6px;
+    right: 6px;
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 0 1rem;
+        max-width: 100%;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .pending-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .photo-card {
+        aspect-ratio: 3 / 4;
+        border-radius: 14px;
+    }
+
+    .photo-card img {
+        object-position: center 10%;
+    }
+
+    .profile-photo-badge {
+        top: 8px;
+        left: 8px;
+        padding: 6px 9px;
+        font-size: 0.66rem;
+    }
+
+    .set-profile-btn {
+        bottom: 8px;
+        width: calc(100% - 16px);
+        padding: 9px 10px;
+        font-size: 0.68rem;
+    }
+}

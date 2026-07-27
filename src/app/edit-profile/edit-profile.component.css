@@ -1,0 +1,222 @@
+.edit-profile-wrapper {
+  min-height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 5%;
+  background: linear-gradient(135deg, #ec407a 0%, #f48fb1 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
+  box-sizing: border-box;
+}
+
+.edit-profile-header h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+}
+
+.back-btn {
+  background: white;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e775b2;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.back-btn:hover {
+  border-color: #f8bbd0;
+  color: #ec407a;
+  transform: translateX(-4px);
+  box-shadow: 0 4px 10px rgba(236, 64, 122, 0.15);
+}
+
+.header-placeholder {
+  width: 40px;
+}
+
+/* Steps Grid */
+.steps-nav-container {
+  padding: 2rem 1rem;
+  background-color: #fff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 5;
+}
+
+.steps-grid {
+  display: flex;
+  flex-wrap: wrap; /* responsive */
+  gap: 1.25rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  justify-content: flex-start;
+}
+
+.step-card {
+  flex: 1;
+  min-width: 140px;
+  max-width: 200px;
+  background-color: #fce4ec; /* Light pink background */
+  border-radius: 12px;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid transparent;
+  text-align: center;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  background-color: #f8bbd0;
+}
+
+.step-card.active {
+  background-color: #f33a6a; /* Darker Pink background */
+  box-shadow: 0 12px 20px rgba(243, 58, 106, 0.3);
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.step-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.step-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  transition: all 0.3s ease;
+  line-height: 1.2;
+}
+
+.step-card.active .step-circle {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.step-card.active .step-label {
+  color: white;
+}
+
+.step-card:hover .step-label {
+  color: #c2185b;
+}
+
+.step-card.active:hover .step-label {
+  color: white;
+}
+
+.steps-nav-container {
+  position: relative;
+  padding-bottom: 0;
+}
+
+.steps-nav-container::after {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(to right, #f33a6a 15%, #fce4ec 15%);
+  margin-top: 2rem;
+  width: 100%;
+}
+
+/* Responsive adjustment */
+@media (max-width: 1024px) {
+    .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .header-content {
+        gap: 0.75rem;
+    }
+    .header-titles h1 {
+        font-size: 1.25rem;
+    }
+}
+
+.partner-prefs-link-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1300px;
+  margin: 2rem auto 2rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, #fff5f9, #fce7f3);
+  border: 2px solid #f9a8d4;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.partner-prefs-link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(236, 64, 122, 0.15);
+}
+
+.partner-prefs-hint {
+  margin: 0.25rem 0 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.partner-prefs-arrow {
+  margin-left: auto;
+  font-size: 1.25rem;
+  color: #ec407a;
+  font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+    .step-card {
+        max-width: none;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 0.75rem 1.5rem;
+        gap: 1.5rem;
+    }
+    .step-circle {
+        margin-bottom: 0;
+    }
+}
