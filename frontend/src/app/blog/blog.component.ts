@@ -1,12 +1,18 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subscription, forkJoin, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { ApiService } from '../services/api.service';
+import { extractMediaUrl } from '../core/utils/profile-image-url';
 
 export interface BlogPost {
   id: string;
+  slug: string;
   title: string;
   excerpt: string;
   content: string[];
   category: string;
+  categoryKey: string;
   author: string;
   date: string;
   readTime: string;
@@ -21,127 +27,32 @@ export interface BlogPost {
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
-export class BlogComponent {
+export class BlogComponent implements OnInit, OnDestroy {
   @Output() viewChange = new EventEmitter<string>();
   @Input() origin: string | null = null;
 
   selectedPost: BlogPost | null = null;
   activeCategory = 'All';
+  categories: string[] = ['All'];
+  posts: BlogPost[] = [];
+  isLoading = false;
+  isDetailLoading = false;
+  loadError = '';
+  detailError = '';
 
-  readonly categories = [
-    'All',
-    'Guidance',
-    'Profiles',
-    'Wedding',
-    'Family',
-    'Community'
-  ];
+  private loadSub: Subscription | null = null;
+  private detailSub: Subscription | null = null;
 
-  readonly posts: BlogPost[] = [
-    {
-      id: 'finding-life-partner',
-      title: 'How to choose a life partner with clarity and calm',
-      excerpt:
-        'A thoughtful guide to matching on values, lifestyle, and family harmony — beyond photos and first impressions.',
-      content: [
-        'Choosing a life partner is one of the most meaningful decisions you will make. In the Mahanubhav tradition, marriage is not only a personal bond — it is a sacred responsibility rooted in shared values, respect, and spiritual alignment.',
-        'Start with clarity about your own lifestyle. Vegetarian habits, family expectations, spiritual practice, and long-term goals matter more than surface-level filters. When both families understand each other’s priorities early, conversations stay warm and honest.',
-        'On Rukmini Swayamvar, take time to complete your profile carefully. A clear biodata, genuine photos, and a sincere “about me” section help the right families find you — and help you recognise compatibility with confidence.',
-        'Speak with patience. Ask about daily routines, career plans, and family roles. Compatibility grows when both sides feel heard. Trust your judgment, involve elders wisely, and move forward only when your heart and values agree.'
-      ],
-      category: 'Guidance',
-      author: 'Rukmini Editorial',
-      date: '12 June 2026',
-      readTime: '4 min read',
-      image: '/assets/images/m1.jpg',
-      featured: true
-    },
-    {
-      id: 'biodata-that-stands-out',
-      title: 'Write a biodata that feels warm, clear, and trustworthy',
-      excerpt:
-        'Simple writing tips so your profile reflects who you are — your values, education, and family background.',
-      content: [
-        'A strong biodata does not need fancy language. It needs honesty, warmth, and structure. Families often decide whether to connect based on how clearly your story is told.',
-        'Open with who you are: education, profession, city, and family setup. Then share what matters to you in a partner — values, lifestyle, and the kind of home you wish to build together.',
-        'Avoid exaggeration. Prefer specific, respectful details: “I enjoy temple seva with my family” lands better than vague claims. Keep paragraphs short so busy readers can scan quickly.',
-        'Finally, review photos and contact preferences. A complete, tidy profile signals sincerity — and that sincerity is what invites meaningful responses.'
-      ],
-      category: 'Profiles',
-      author: 'Rukmini Editorial',
-      date: '5 June 2026',
-      readTime: '3 min read',
-      image: '/assets/images/m2.jpg'
-    },
-    {
-      id: 'family-first-conversations',
-      title: 'Family-first conversations that build trust early',
-      excerpt:
-        'How to involve parents and elders gracefully while keeping the match process respectful for both sides.',
-      content: [
-        'In community marriages, family involvement is a strength when handled with care. Early conversations set the tone for trust between both homes.',
-        'Begin with introductions that feel personal, not transactional. Share what you admire about your family culture, seva practices, and daily life. Invite questions without pressure.',
-        'Discuss practical topics calmly: location preferences, career timelines, and living arrangements. Clarity prevents misunderstandings later.',
-        'Remember: both families are seeking peace of mind. Courtesy, punctuality in replies, and transparent communication turn a match enquiry into a relationship of respect.'
-      ],
-      category: 'Family',
-      author: 'Rukmini Editorial',
-      date: '28 May 2026',
-      readTime: '3 min read',
-      image: '/assets/images/m3.jpg'
-    },
-    {
-      id: 'wedding-rituals-meaning',
-      title: 'Wedding rituals with meaning — not just moments',
-      excerpt:
-        'A gentle look at traditional ceremonies and how couples can keep devotion at the centre of celebration.',
-      content: [
-        'A wedding is a celebration, but in our tradition it is also a vow. Rituals carry meaning when families understand why each step is performed.',
-        'Take time to explain customs to younger relatives and guests. When everyone knows the spirit behind a ceremony, the day feels united rather than rushed.',
-        'Choose simplicity where it serves devotion. Elegant attire, sincere hospitality, and mindful music often create a warmer memory than excess.',
-        'Above all, keep the couple’s blessing and family harmony at the centre. A wedding remembered for its grace becomes a foundation for married life.'
-      ],
-      category: 'Wedding',
-      author: 'Rukmini Editorial',
-      date: '18 May 2026',
-      readTime: '4 min read',
-      image: '/assets/images/m1.jpg'
-    },
-    {
-      id: 'safe-matching-online',
-      title: 'Stay safe while matching online — practical checklist',
-      excerpt:
-        'Privacy, verification, and healthy boundaries so your matrimonial journey stays secure and respectful.',
-      content: [
-        'Online matching is convenient, but safety deserves the same attention as compatibility. Protect your personal information while you explore genuine connections.',
-        'Share sensitive details only after mutual interest is clear. Prefer in-app messaging first. Meet in public places with family awareness when you decide to meet offline.',
-        'Use platform tools: report suspicious behaviour, keep photos appropriate, and verify profiles carefully. A respectful match will never pressure you to rush.',
-        'Your peace of mind matters. A careful pace is not hesitation — it is wisdom that protects your future home.'
-      ],
-      category: 'Guidance',
-      author: 'Rukmini Editorial',
-      date: '8 May 2026',
-      readTime: '3 min read',
-      image: '/assets/images/m2.jpg'
-    },
-    {
-      id: 'community-values-marriage',
-      title: 'Why shared community values strengthen marriage',
-      excerpt:
-        'Faith, vegetarian lifestyle, and cultural roots — how shared foundations support lifelong companionship.',
-      content: [
-        'Shared community values give a marriage a common language. Festivals, food habits, seva, and spiritual rhythm become easier when both partners already understand them.',
-        'Rukmini Swayamvar exists to honour that foundation for the Mahanubhav Panth community — helping families meet with cultural familiarity and mutual respect.',
-        'Values do not replace personal chemistry; they support it. When daily life aligns, couples spend less energy negotiating basics and more energy building affection.',
-        'Seek a partner who shares your roots and respects your individuality. That balance — tradition with understanding — is where lasting homes are built.'
-      ],
-      category: 'Community',
-      author: 'Rukmini Editorial',
-      date: '1 May 2026',
-      readTime: '4 min read',
-      image: '/assets/images/m3.jpg'
-    }
-  ];
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.loadCategoriesAndPosts();
+  }
+
+  ngOnDestroy(): void {
+    this.loadSub?.unsubscribe();
+    this.detailSub?.unsubscribe();
+  }
 
   get featuredPost(): BlogPost | null {
     if (this.activeCategory !== 'All') return null;
@@ -149,20 +60,18 @@ export class BlogComponent {
   }
 
   get visiblePosts(): BlogPost[] {
-    const filtered =
-      this.activeCategory === 'All'
-        ? this.posts
-        : this.posts.filter((p) => p.category === this.activeCategory);
-
     const featuredId = this.featuredPost?.id;
     if (featuredId && this.activeCategory === 'All') {
-      return filtered.filter((p) => p.id !== featuredId);
+      return this.posts.filter((p) => p.id !== featuredId);
     }
-    return filtered;
+    return this.posts;
   }
 
   setCategory(category: string): void {
+    if (this.activeCategory === category) return;
     this.activeCategory = category;
+    this.selectedPost = null;
+    this.loadPosts();
   }
 
   onCardImageError(post: BlogPost): void {
@@ -170,12 +79,45 @@ export class BlogComponent {
   }
 
   openPost(post: BlogPost): void {
-    this.selectedPost = post;
+    this.detailError = '';
+    this.isDetailLoading = true;
+    this.selectedPost = { ...post };
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    this.detailSub?.unsubscribe();
+    this.detailSub = this.apiService
+      .getBlogDetail(
+        post.id
+          ? { blogId: post.id }
+          : { slug: post.slug }
+      )
+      .subscribe({
+        next: (response: any) => {
+          this.isDetailLoading = false;
+          if (response?.success === false) {
+            this.detailError = response?.error || response?.message || 'Blog not found';
+            return;
+          }
+          const raw = this.extractBlogItem(response);
+          if (!raw) {
+            this.detailError = 'Blog not found';
+            return;
+          }
+          this.selectedPost = this.mapBlogToPost(raw, true);
+        },
+        error: (error: any) => {
+          this.isDetailLoading = false;
+          this.detailError =
+            error?.error?.error || error?.error?.message || 'Failed to load article.';
+        }
+      });
   }
 
   closePost(): void {
+    this.detailSub?.unsubscribe();
     this.selectedPost = null;
+    this.detailError = '';
+    this.isDetailLoading = false;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -190,5 +132,229 @@ export class BlogComponent {
       this.viewChange.emit('home');
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  formatCategoryLabel(key: string): string {
+    if (!key || key === 'All') return 'All';
+    return key
+      .split(/[_-]/)
+      .filter(Boolean)
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ');
+  }
+
+  private loadCategoriesAndPosts(): void {
+    this.isLoading = true;
+    this.loadError = '';
+
+    this.loadSub?.unsubscribe();
+    this.loadSub = forkJoin({
+      categories: this.apiService.listBlogCategories().pipe(
+        catchError(() => of({ success: true, categories: [] }))
+      ),
+      list: this.apiService.listBlogs({ page: 1, limit: 20, search: '' }).pipe(
+        catchError((error) => of({ success: false, error, data: [] }))
+      )
+    }).subscribe({
+      next: ({ categories, list }) => {
+        this.categories = this.mapCategories(categories);
+        this.applyListResponse(list);
+      },
+      error: (error: any) => {
+        this.isLoading = false;
+        this.loadError = error?.error?.message || 'Failed to load blogs.';
+        this.posts = [];
+      }
+    });
+  }
+
+  private loadPosts(): void {
+    this.isLoading = true;
+    this.loadError = '';
+    this.posts = [];
+
+    const categoryKey =
+      this.activeCategory === 'All' ? '' : this.toCategoryKey(this.activeCategory);
+
+    this.loadSub?.unsubscribe();
+    this.loadSub = this.apiService
+      .listBlogs({
+        page: 1,
+        limit: 20,
+        category: categoryKey,
+        search: ''
+      })
+      .subscribe({
+        next: (response: any) => this.applyListResponse(response),
+        error: (error: any) => {
+          this.isLoading = false;
+          this.loadError = error?.error?.message || 'Failed to load blogs.';
+          this.posts = [];
+        }
+      });
+  }
+
+  private applyListResponse(response: any): void {
+    this.isLoading = false;
+    if (response?.success === false) {
+      this.loadError = response?.error || response?.message || 'Failed to load blogs.';
+      this.posts = [];
+      return;
+    }
+
+    const items = this.extractBlogList(response);
+    this.posts = items.map((item, index) => this.mapBlogToPost(item, index === 0));
+    this.loadError = '';
+  }
+
+  private mapCategories(response: any): string[] {
+    const raw: unknown[] =
+      (Array.isArray(response?.categories) && response.categories) ||
+      (Array.isArray(response?.data?.categories) && response.data.categories) ||
+      (Array.isArray(response?.data) && response.data) ||
+      [];
+
+    const labels: string[] = raw
+      .map((c: unknown) => {
+        if (typeof c === 'string') return this.formatCategoryLabel(c);
+        if (c && typeof c === 'object') {
+          const obj = c as Record<string, unknown>;
+          return this.formatCategoryLabel(
+            String(obj['key'] || obj['slug'] || obj['name'] || obj['category'] || '')
+          );
+        }
+        return '';
+      })
+      .filter((label): label is string => !!label);
+
+    return ['All', ...Array.from(new Set<string>(labels))];
+  }
+
+  private toCategoryKey(label: string): string {
+    const known: Record<string, string> = {
+      Traditions: 'traditions',
+      'Marriage Tips': 'marriage_tips',
+      'Relationship Advice': 'relationship_advice',
+      'Community News': 'community_news',
+      'Wedding Planning': 'wedding_planning',
+      Inspiration: 'inspiration'
+    };
+    if (known[label]) return known[label];
+    return label.trim().toLowerCase().replace(/\s+/g, '_');
+  }
+
+  private extractBlogList(response: any): any[] {
+    if (!response || typeof response !== 'object') return [];
+    const data = response.data ?? response;
+    if (Array.isArray(data)) return data;
+    if (Array.isArray(data?.blogs)) return data.blogs;
+    if (Array.isArray(data?.list)) return data.list;
+    if (Array.isArray(data?.items)) return data.items;
+    if (Array.isArray(response?.blogs)) return response.blogs;
+    return [];
+  }
+
+  private extractBlogItem(response: any): any | null {
+    if (!response || typeof response !== 'object') return null;
+    if (response.data && typeof response.data === 'object' && !Array.isArray(response.data)) {
+      return response.data.blog || response.data.item || response.data;
+    }
+    if (response.blog && typeof response.blog === 'object') return response.blog;
+    if (response.id || response.blogId || response.title || response.slug) return response;
+    return null;
+  }
+
+  private mapBlogToPost(item: any, featured = false): BlogPost {
+    const categoryKey = String(
+      item?.category || item?.categoryKey || item?.category_slug || ''
+    ).trim();
+
+    const title = String(item?.title || item?.name || 'Untitled article').trim();
+    const storyText = String(
+      item?.content || item?.body || item?.description || item?.story || ''
+    ).trim();
+    const excerpt = String(
+      item?.excerpt || item?.summary || item?.shortDescription || ''
+    ).trim() || this.truncateAtWord(storyText, 145) || 'Read this article from Rukmini Swayamvar.';
+
+    const paragraphs = this.toParagraphs(storyText || excerpt);
+    const dateRaw = String(
+      item?.publishedAt || item?.published_at || item?.createdAt || item?.date || ''
+    ).trim();
+
+    return {
+      id: String(item?.id || item?.blogId || item?._id || item?.slug || title),
+      slug: String(item?.slug || '').trim(),
+      title,
+      excerpt,
+      content: paragraphs,
+      category: this.formatCategoryLabel(categoryKey || 'Blog'),
+      categoryKey,
+      author: String(item?.author || item?.authorName || item?.writer || 'Rukmini Editorial').trim(),
+      date: this.formatDate(dateRaw) || 'Recently published',
+      readTime:
+        String(item?.readTime || item?.readingTime || '').trim() ||
+        this.estimateReadTime(paragraphs.join(' ')),
+      image: this.resolveBlogImage(item),
+      featured
+    };
+  }
+
+  private toParagraphs(text: string): string[] {
+    const parts = text
+      .split(/\n+/)
+      .map((p) => p.trim())
+      .filter(Boolean);
+    return parts.length ? parts : [text || 'Article content will appear here soon.'];
+  }
+
+  private resolveBlogImage(item: any): string {
+    const fields = [
+      'coverImage',
+      'coverImageUrl',
+      'cover_image',
+      'image',
+      'imageUrl',
+      'image_url',
+      'thumbnail',
+      'thumbnailUrl',
+      'photo',
+      'banner'
+    ];
+    for (const field of fields) {
+      const url = extractMediaUrl(item?.[field]);
+      if (url) return url;
+    }
+    if (Array.isArray(item?.images) && item.images.length) {
+      const url = extractMediaUrl(item.images[0]);
+      if (url) return url;
+    }
+    return '';
+  }
+
+  private formatDate(value: string): string {
+    if (!value) return '';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    return date.toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+  }
+
+  private estimateReadTime(text: string): string {
+    const words = text.trim().split(/\s+/).filter(Boolean).length;
+    const minutes = Math.max(1, Math.ceil(words / 180));
+    return `${minutes} min read`;
+  }
+
+  private truncateAtWord(text: string, maxLen: number): string {
+    const cleaned = text.replace(/\s+/g, ' ').trim();
+    if (cleaned.length <= maxLen) return cleaned;
+    const sliced = cleaned.slice(0, maxLen);
+    const lastSpace = sliced.lastIndexOf(' ');
+    const cut = lastSpace > maxLen * 0.6 ? sliced.slice(0, lastSpace) : sliced;
+    return `${cut.trim()}…`;
   }
 }

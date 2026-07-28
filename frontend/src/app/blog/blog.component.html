@@ -37,7 +37,10 @@
           </p>
         </header>
 
-        <div class="blog-article-body">
+        <p class="blog-status" *ngIf="isDetailLoading">Loading article…</p>
+        <p class="blog-status blog-error" *ngIf="!isDetailLoading && detailError">{{ detailError }}</p>
+
+        <div class="blog-article-body" *ngIf="!isDetailLoading && !detailError">
           <p class="blog-article-dek">{{ post.excerpt }}</p>
           <p *ngFor="let paragraph of post.content">{{ paragraph }}</p>
         </div>
@@ -51,7 +54,7 @@
 
   <!-- Blog home -->
   <main class="blog-main" *ngIf="!selectedPost">
-    <nav class="blog-cats" aria-label="Blog categories">
+    <nav class="blog-cats" aria-label="Blog categories" *ngIf="categories.length">
       <button
         type="button"
         class="blog-cat"
@@ -62,10 +65,13 @@
       </button>
     </nav>
 
+    <p class="blog-status" *ngIf="isLoading">Loading blogs…</p>
+    <p class="blog-status blog-error" *ngIf="!isLoading && loadError">{{ loadError }}</p>
+
     <!-- Featured -->
     <article
       class="blog-featured"
-      *ngIf="featuredPost as post"
+      *ngIf="!isLoading && featuredPost as post"
       (click)="openPost(post)"
       (keydown.enter)="openPost(post)"
       tabindex="0"
@@ -93,7 +99,7 @@
     </article>
 
     <!-- Article grid -->
-    <section class="blog-grid" aria-label="Blog articles" *ngIf="visiblePosts.length > 0">
+    <section class="blog-grid" aria-label="Blog articles" *ngIf="!isLoading && visiblePosts.length > 0">
       <article
         class="blog-card"
         *ngFor="let post of visiblePosts; let i = index"
@@ -124,8 +130,8 @@
       </article>
     </section>
 
-    <p class="blog-empty" *ngIf="visiblePosts.length === 0 && !featuredPost">
-      No articles in this category yet.
+    <p class="blog-empty" *ngIf="!isLoading && !loadError && visiblePosts.length === 0 && !featuredPost">
+      No published blogs yet.
     </p>
   </main>
 </div>

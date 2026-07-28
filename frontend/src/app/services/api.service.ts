@@ -240,6 +240,18 @@ export interface TeachingDetailPayload {
   slug?: string;
 }
 
+export interface BlogsListPayload {
+  page?: number;
+  limit?: number;
+  category?: string;
+  search?: string;
+}
+
+export interface BlogDetailPayload {
+  blogId?: string | number;
+  slug?: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -1695,6 +1707,53 @@ export class ApiService {
       body['slug'] = payload.slug.trim();
     }
     return this.http.post(`${this.baseUrl}/teachings/detail`, body, options);
+  }
+
+  /** GET /api/blogs/ping — public blogs health check */
+  pingBlogs(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/blogs/ping`);
+  }
+
+  /** POST /api/blogs/list — published blogs (public) */
+  listBlogs(payload: BlogsListPayload = {}): Observable<any> {
+    const token = this.getToken();
+    const options = token
+      ? { headers: new HttpHeaders({ Authorization: `Bearer ${token}` }) }
+      : undefined;
+    const body: Record<string, string | number> = {
+      page: payload.page ?? 1,
+      limit: payload.limit ?? 20,
+      search: payload.search ?? ''
+    };
+    if (payload.category?.trim()) {
+      body['category'] = payload.category.trim();
+    }
+    return this.http.post(`${this.baseUrl}/blogs/list`, body, options);
+  }
+
+  /** POST /api/blogs/detail — by blogId or slug (public) */
+  getBlogDetail(payload: BlogDetailPayload): Observable<any> {
+    const token = this.getToken();
+    const options = token
+      ? { headers: new HttpHeaders({ Authorization: `Bearer ${token}` }) }
+      : undefined;
+    const body: Record<string, string | number> = {};
+    if (payload.blogId != null && String(payload.blogId).trim() !== '') {
+      body['blogId'] = payload.blogId;
+    }
+    if (payload.slug?.trim()) {
+      body['slug'] = payload.slug.trim();
+    }
+    return this.http.post(`${this.baseUrl}/blogs/detail`, body, options);
+  }
+
+  /** POST /api/blogs/categories — published blog categories (public) */
+  listBlogCategories(): Observable<any> {
+    const token = this.getToken();
+    const options = token
+      ? { headers: new HttpHeaders({ Authorization: `Bearer ${token}` }) }
+      : undefined;
+    return this.http.post(`${this.baseUrl}/blogs/categories`, {}, options);
   }
 
   // User Data Management

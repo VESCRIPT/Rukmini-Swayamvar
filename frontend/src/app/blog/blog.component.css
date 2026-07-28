@@ -340,6 +340,17 @@
   color: var(--pink-deep);
 }
 
+.blog-status {
+  text-align: center;
+  margin: 1.25rem 0;
+  font-size: 0.95rem;
+  color: var(--soft);
+}
+
+.blog-error {
+  color: #c62828;
+}
+
 .blog-empty {
   text-align: center;
   margin: 2rem 0;
