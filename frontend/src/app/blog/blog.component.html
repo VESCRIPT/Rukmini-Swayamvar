@@ -13,16 +13,18 @@
   <!-- Article reading view -->
   <article class="blog-article" *ngIf="selectedPost as post">
     <div class="blog-article-layout">
-      <div class="blog-article-media">
-        <img
-          *ngIf="post.image"
-          [src]="post.image"
-          [alt]="post.title"
-          loading="eager"
-          decoding="async"
-          (error)="onCardImageError(post)" />
-        <div class="blog-article-media-fallback" *ngIf="!post.image" aria-hidden="true"></div>
-      </div>
+      <aside class="blog-article-media-wrap">
+        <div class="blog-article-media">
+          <img
+            *ngIf="post.image"
+            [src]="post.image"
+            [alt]="post.title"
+            loading="eager"
+            decoding="async"
+            (error)="onCardImageError(post)" />
+          <div class="blog-article-media-fallback" *ngIf="!post.image" aria-hidden="true"></div>
+        </div>
+      </aside>
 
       <div class="blog-article-info">
         <header class="blog-article-header">
