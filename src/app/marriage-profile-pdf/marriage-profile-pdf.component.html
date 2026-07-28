@@ -1,0 +1,81 @@
+<div class="marriage-pdf-page min-h-screen relative flex flex-col bg-gradient-to-br from-pink-50 via-white to-rose-50 font-inter">
+  <!-- Header like change-password -->
+  <div class="marriage-header">
+    <button class="marriage-back-btn" (click)="goBack()" aria-label="Go Back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+    </button>
+    <h1>Marriage Profile</h1>
+    <div class="marriage-placeholder"></div>
+  </div>
+
+  <!-- Full-height center wrapper: card in exact middle of viewport -->
+  <div class="center-card-wrapper flex-1 flex items-center justify-center w-full px-4">
+  <div class="card-container w-full max-w-3xl mx-auto">
+    <div class="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 border border-pink-100">
+      <div class="form-group">
+        <label class="form-label flex items-center gap-2">
+          <span>Marriage Profile (PDF)</span>
+          <span class="text-xs text-gray-500 font-normal">(Optional but recommended)</span>
+        </label>
+
+        <div class="relative group w-full max-w-xl mx-auto">
+          <!-- PDF Upload Box - when file is uploaded -->
+          <div *ngIf="biodata"
+            class="w-full p-4 bg-pink-50 border-2 border-pink-300 rounded-2xl flex items-center justify-between animate-fade-in shadow-sm">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm border border-pink-100">
+                <svg class="w-6 h-6 text-pink-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd"
+                    d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-bold text-pink-900">Marriage Profile Uploaded</p>
+                <p class="text-[10px] text-gray-500">Max 10MB • Only 1 PDF allowed</p>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <label
+                class="cursor-pointer px-3 py-1.5 bg-white text-pink-600 text-xs font-bold rounded-full border border-pink-200 hover:bg-pink-50 transition-colors shadow-sm">
+                <input type="file" accept="application/pdf" (change)="onBiodataSelect($event)" class="hidden">
+                Replace
+              </label>
+              <button (click)="removeBiodata()"
+                class="px-3 py-1.5 bg-red-50 text-red-600 text-xs font-bold rounded-full border border-red-100 hover:bg-red-100 transition-colors">
+                Remove
+              </button>
+            </div>
+          </div>
+
+          <!-- Empty PDF Slot -->
+          <label *ngIf="!biodata" class="cursor-pointer block">
+            <input type="file" accept="application/pdf" (change)="onBiodataSelect($event)" class="hidden">
+            <div
+              class="w-full p-5 bg-white border-2 border-dashed border-pink-300 rounded-2xl flex flex-col items-center justify-center hover:border-pink-500 hover:bg-pink-50 transition-all group-hover:scale-[1.01]">
+              <div
+                class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-2 text-pink-500 transition-transform group-hover:scale-110">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                  </path>
+                </svg>
+              </div>
+              <p class="text-sm text-pink-900 font-bold mb-1">Select Marriage Profile PDF</p>
+              <p class="text-[10px] text-gray-500">Upload your profile in PDF format</p>
+              <p class="text-[10px] text-gray-500">(Max 10MB • Only 1 PDF allowed)</p>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <p *ngIf="errorMessage" class="text-sm text-red-600 mt-2">{{ errorMessage }}</p>
+      <p *ngIf="isSaving" class="text-sm text-pink-600 mt-2">Saving...</p>
+    </div>
+  </div>
+  </div>
+  </div>
+

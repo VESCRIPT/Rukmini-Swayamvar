@@ -1,0 +1,84 @@
+<div class="min-h-screen w-full relative overflow-hidden flex items-center justify-center bg-[#041d24]">
+  <div 
+    class="absolute inset-0 z-0 scale-105 animate-slow-zoom"
+    [style.backgroundImage]="'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url(' + backgroundImageUrl + ')'
+    "
+    style="background-size: cover; background-position: center; background-attachment: fixed;">
+  </div>
+
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#041d24]/20 to-[#041d24]/80 z-[1]"></div>
+  
+  <div class="relative z-10 px-6 flex flex-col items-center text-center">
+    
+    <div class="flex flex-col items-center animate-fade-in-up">
+      
+      <div class="flex items-center justify-center gap-4 mb-2">
+        <svg width="80" height="12" viewBox="0 0 80 12" class="opacity-80">
+          <path d="M0 6 L65 6 C70 6 75 4 80 2" stroke="url(#logoGold)" stroke-width="1.5" fill="none" />
+          <path d="M72 6 Q75 6 75 9 Q75 6 78 6" stroke="url(#logoGold)" stroke-width="1" fill="none" />
+        </svg>
+
+        <svg width="50" height="50" viewBox="0 0 100 100" class="drop-shadow-lg">
+          <defs>
+            <linearGradient id="logoGold" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color: #e6dd7f; stop-opacity: 1" />
+              <stop offset="30%" style="stop-color: #ddd255; stop-opacity: 1" />
+              <stop offset="60%" style="stop-color: #c0b326; stop-opacity: 1" />
+              <stop offset="100%" style="stop-color: #8b7138; stop-opacity: 1" />
+            </linearGradient>
+          </defs>
+          <g transform="translate(50,50)">
+            <path *ngFor="let i of [0, 72, 144, 216, 288]" 
+                  [attr.transform]="'rotate(' + i + ')'" 
+                  d="M0 0 Q-15 -35 0 -45 Q15 -35 0 0" 
+                  fill="url(#logoGold)" />
+            <circle cx="0" cy="0" r="4" fill="#5e4b25" />
+          </g>
+        </svg>
+
+        <svg width="80" height="12" viewBox="0 0 80 12" class="opacity-80" style="transform: scaleX(-1)">
+          <path d="M0 6 L65 6 C70 6 75 4 80 2" stroke="url(#logoGold)" stroke-width="1.5" fill="none" />
+          <path d="M72 6 Q75 6 75 9 Q75 6 78 6" stroke="url(#logoGold)" stroke-width="1" fill="none" />
+        </svg>
+      </div>
+
+      <h1 class="golden-text text-4xl md:text-6xl lg:text-[80px] font-serif font-bold tracking-[0.12em] leading-none mb-2 select-none">
+        RUKMINI
+      </h1>
+      
+      <div class="flex items-center gap-6">
+        <svg width="40" height="20" viewBox="0 0 40 20" class="opacity-60">
+          <path d="M40 10 Q20 10 0 18" stroke="url(#logoGold)" stroke-width="1.5" fill="none" />
+        </svg>
+        <h2 class="golden-text text-xl md:text-2xl lg:text-3xl font-serif font-light tracking-[0.45em] leading-none select-none uppercase">
+          Swayamvar
+        </h2>
+        <svg width="40" height="20" viewBox="0 0 40 20" class="opacity-60" style="transform: scaleX(-1)">
+          <path d="M40 10 Q20 10 0 18" stroke="url(#logoGold)" stroke-width="1.5" fill="none" />
+        </svg>
+      </div>
+
+      <div class="mt-8 flex flex-col items-center">
+        <div class="h-[1px] w-20 bg-gradient-to-r from-transparent via-[#ddd255] to-transparent mb-4 opacity-40"></div>
+        
+        <svg width="60" height="40" viewBox="0 0 60 40">
+          <g fill="url(#logoGold)">
+            <path d="M30 0 Q35 15 30 25 Q25 15 30 0" />
+            <path d="M30 20 Q45 25 55 15 Q45 35 30 20" />
+            <path d="M30 20 Q15 25 5 15 Q15 35 30 20" />
+          </g>
+          <rect x="0" y="24" width="25" height="1" fill="url(#logoGold)" opacity="0.4" />
+          <rect x="35" y="24" width="25" height="1" fill="url(#logoGold)" opacity="0.4" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="mt-16 flex flex-col items-center opacity-30 animate-fade-in" style="animation-delay: 1.5s;">
+       <div class="h-16 w-[1px] bg-gradient-to-b from-[#ddd255] to-transparent"></div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-0 w-full text-center text-[#ddd255]/30 text-[10px] tracking-[0.5em] uppercase font-bold z-10">
+    Pure • Traditional • Divine
+  </div>
+</div>

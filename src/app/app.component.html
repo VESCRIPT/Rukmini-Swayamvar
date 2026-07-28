@@ -1,0 +1,165 @@
+<!-- <app-splash *ngIf="showSplash"></app-splash> -->
+
+<!-- <ng-container *ngIf="!showSplash"> -->
+<!-- IMPORTANT: NO router-outlet here! -->
+
+<app-navbar
+  *ngIf="!['login', 'register', 'forgot-password', 'email-otp', 'set-password', 'profile-form', 'edit-profile', 'welcome', 'partner-preferences', 'shortlisted', 'my-connections', 'photo-gallery', 'marriage-profile-pdf', 'biodata-maker', 'messages', 'chat-detail', 'favorites', 'dashboard', 'premium', 'settings', 'notifications', 'profile-detail', 'language', 'change-password', 'notification-settings', 'privacy-settings', 'reported-blocked-users', 'delete-account', 'help-center', 'help-support', 'about-us', 'blog', 'contact-detail', 'privacy-policy', 'child-safety-policy', 'terms-and-conditions', 'success-stories', 'community', 'community-events', 'event-detail', 'teachings', 'teaching-article'].includes(currentView)"
+  [t]="t" [currentLang]="currentLang" [currentView]="$any(currentView)" (langChange)="setLanguage($event)"
+  (viewChange)="setView($event)">
+</app-navbar>
+
+<div *ngIf="currentView === 'home'">
+  <app-home-page [t]="t" (viewChange)="setView($event)"></app-home-page>
+</div>
+
+<app-privacy-policy *ngIf="currentView === 'privacy-policy'" [origin]="previousView" (viewChange)="setView($any($event))">
+</app-privacy-policy>
+
+<app-child-safety-policy *ngIf="currentView === 'child-safety-policy'" [origin]="previousView"
+  (viewChange)="setView($any($event))"></app-child-safety-policy>
+
+<app-about-us *ngIf="currentView === 'about-us'" [origin]="previousView" (viewChange)="setView($any($event))">
+</app-about-us>
+
+<app-blog *ngIf="currentView === 'blog'" [origin]="previousView" (viewChange)="setView($any($event))">
+</app-blog>
+
+<app-contact-detail *ngIf="currentView === 'contact-detail'" [origin]="previousView"
+  (viewChange)="setView($any($event))"></app-contact-detail>
+
+<app-terms-and-conditions *ngIf="currentView === 'terms-and-conditions'" [origin]="previousView"
+  (viewChange)="setView($any($event))"></app-terms-and-conditions>
+
+<app-success-stories *ngIf="currentView === 'success-stories'" [t]="t" [origin]="previousView"
+  (viewChange)="setView($any($event))"></app-success-stories>
+
+
+<app-footer [t]="t" (viewChange)="setView($any($event))"
+  *ngIf="currentView === 'home' || currentView === 'privacy-policy' || currentView === 'child-safety-policy' || currentView === 'about-us' || currentView === 'blog' || currentView === 'terms-and-conditions'">
+</app-footer>
+
+<app-help-center *ngIf="currentView === 'help-center' || currentView === 'help-support'" [origin]="previousView" [defaultSubView]="helpCenterDefaultSubView" (viewChange)="setView($any($event))"></app-help-center>
+
+<app-user-profile *ngIf="currentView === 'login'" [t]="t" (viewChange)="setView($event)">
+</app-user-profile>
+
+<app-signup *ngIf="currentView === 'register'" [t]="t" (viewChange)="setView($event)">
+</app-signup>
+
+<app-forgot-password *ngIf="currentView === 'forgot-password'" [t]="t" (viewChange)="setView($event)">
+</app-forgot-password>
+
+<app-email-otp *ngIf="currentView === 'email-otp'" [t]="t" [previousView]="$any(previousView)"
+  (viewChange)="setView($event)">
+</app-email-otp>
+
+<app-set-password *ngIf="currentView === 'set-password'" [t]="t" [previousView]="$any(previousView)"
+  (viewChange)="setView($event)">
+</app-set-password>
+
+<app-profile-form *ngIf="currentView === 'profile-form'" [t]="t" [previousView]="$any(previousView)"
+  [initialStep]="selectedStep" (viewChange)="setView($event)">
+</app-profile-form>
+
+<app-edit-profile *ngIf="currentView === 'edit-profile'" [previousView]="$any(previousView)" (viewChange)="setView($event)"
+  (stepSelected)="onStepSelected($event)">
+</app-edit-profile>
+
+<app-partner-preferences *ngIf="currentView === 'partner-preferences'" [t]="t" [previousView]="$any(previousView)"
+  (viewChange)="setView($event)">
+</app-partner-preferences>
+
+<app-welcome *ngIf="currentView === 'welcome'" [t]="t" (viewChange)="setView($event)">
+</app-welcome>
+
+<app-dashboard *ngIf="currentView === 'dashboard'" [t]="t" [previousView]="$any(previousView)"
+  (viewChange)="setView($event)" (viewProfile)="openProfileDetail($event)" (openChat)="openChatDetail($event)">
+</app-dashboard>
+
+<app-settings *ngIf="currentView === 'settings'" (viewChange)="setView($event)">
+</app-settings>
+
+<app-notification-settings *ngIf="currentView === 'notification-settings'" (viewChange)="setView($event)">
+</app-notification-settings>
+
+<app-notifications *ngIf="currentView === 'notifications'" [previousView]="$any(previousView)"
+  (viewChange)="setView($event)">
+</app-notifications>
+
+<app-change-password *ngIf="currentView === 'change-password'" (viewChange)="setView($event)">
+</app-change-password>
+
+<app-privacy-settings *ngIf="currentView === 'privacy-settings'" (viewChange)="setView($event)">
+</app-privacy-settings>
+
+<app-reported-blocked-users *ngIf="currentView === 'reported-blocked-users'" (viewChange)="setView($event)" (viewProfile)="openProfileDetail($event)">
+</app-reported-blocked-users>
+
+<app-language *ngIf="currentView === 'language'" [currentLang]="currentLang" (viewChange)="setView($event)"
+  (langChange)="setLanguage($event)">
+</app-language>
+
+<app-messages *ngIf="currentView === 'messages'" [t]="t" (viewChange)="setView($event)"
+  (openChat)="openChatDetail($event)">
+</app-messages>
+
+<app-chat-detail *ngIf="currentView === 'chat-detail'" [userId]="selectedProfileId"
+  [conversationId]="selectedConversationId" [otherUserInfo]="selectedChatOtherUser"
+  [connectionStatus]="selectedConnectionStatus" [t]="t"
+  (viewChange)="setView($event)" (backToMessages)="setView('messages')" (connectionStatusChange)="selectedConnectionStatus = $event">
+</app-chat-detail>
+
+<app-favorites *ngIf="currentView === 'favorites'" [t]="t" (viewChange)="setView($event)"
+  (viewProfile)="openProfileDetail($event)" (openChat)="openChatDetail($event)">
+</app-favorites>
+
+<app-profile-detail *ngIf="currentView === 'profile-detail'" [t]="t" [profileId]="selectedProfileId"
+  (viewChange)="setView($event)">
+</app-profile-detail>
+
+<app-photo-gallery *ngIf="currentView === 'photo-gallery'" [previousView]="$any(previousView)" (viewChange)="setView($event)">
+</app-photo-gallery>
+
+<app-marriage-profile-pdf *ngIf="currentView === 'marriage-profile-pdf'" [previousView]="$any(previousView)" (viewChange)="setView($event)">
+</app-marriage-profile-pdf>
+
+<app-biodata-maker *ngIf="currentView === 'biodata-maker'" [previousView]="$any(previousView)" (viewChange)="setView($event)">
+</app-biodata-maker>
+
+<app-delete-account *ngIf="currentView === 'delete-account'" [t]="t" [previousView]="$any(previousView)" (viewChange)="setView($event)">
+</app-delete-account>
+
+<app-premium *ngIf="currentView === 'premium'" [t]="t" (viewChange)="setView($event)">
+</app-premium>
+
+<app-shortlisted *ngIf="currentView === 'shortlisted'" [t]="t" (viewChange)="setView($event)"
+  (viewProfile)="openProfileDetail($event)" (openChat)="openChatDetail($event)">
+</app-shortlisted>
+
+<app-my-connections *ngIf="currentView === 'my-connections'" [t]="t" (viewChange)="setView($event)"
+  (viewProfile)="openProfileDetail($event)" (openChat)="openChatDetail($event)">
+</app-my-connections>
+
+<app-community-home *ngIf="currentView === 'community'" [username]="communityUsername"
+  [previousView]="$any(previousView)" (viewChange)="setView($event)"
+  (openEvents)="openCommunityEvents($event)" (openTeachings)="openTeachings($event)">
+</app-community-home>
+
+<app-community-events *ngIf="currentView === 'community-events'" [initialCategory]="selectedEventCategory"
+  (viewChange)="setView($event)" (openEvent)="openEventDetail($event)">
+</app-community-events>
+
+<app-event-detail *ngIf="currentView === 'event-detail'" [eventId]="selectedEventId"
+  (viewChange)="setView($event)">
+</app-event-detail>
+
+<app-teachings-list *ngIf="currentView === 'teachings'" [initialCategory]="selectedTeachingCategory"
+  (viewChange)="setView($event)" (openArticle)="openTeachingArticle($event)">
+</app-teachings-list>
+
+<app-teaching-article *ngIf="currentView === 'teaching-article'" [articleId]="selectedArticleId"
+  (viewChange)="setView($event)">
+</app-teaching-article>
+
+<!-- </ng-container> -->

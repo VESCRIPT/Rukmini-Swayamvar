@@ -1,0 +1,278 @@
+.ce-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top right, rgba(244, 143, 177, 0.18), transparent 40%),
+    #fff5f8;
+  font-family: 'Outfit', 'Roboto', system-ui, sans-serif;
+}
+
+.ce-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 5%;
+  background: linear-gradient(135deg, #ec407a 0%, #f48fb1 100%);
+  box-shadow: 0 2px 14px rgba(236, 64, 122, 0.18);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.ce-back {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.95);
+  color: #ec407a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ce-header-text {
+  text-align: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.ce-header-text h1 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.ce-header-text p {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.ce-spacer {
+  width: 42px;
+  flex-shrink: 0;
+}
+
+.ce-tabs {
+  display: flex;
+  max-width: 900px;
+  margin: 1.25rem auto 0;
+  padding: 0 5%;
+  gap: 0.5rem;
+  box-sizing: border-box;
+}
+
+.ce-tab {
+  flex: 1;
+  border: 1px solid #f8bbd0;
+  background: #fff;
+  padding: 0.85rem 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.ce-tab.active {
+  color: #fff;
+  background: #ec407a;
+  border-color: #ec407a;
+  box-shadow: 0 8px 20px rgba(236, 64, 122, 0.25);
+}
+
+.ce-toggle-wrap {
+  padding: 1rem 5% 0.25rem;
+  max-width: 900px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.ce-toggle {
+  display: inline-flex;
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  border-radius: 999px;
+  padding: 0.25rem;
+  gap: 0.25rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.ce-toggle-btn {
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  padding: 0.55rem 1.05rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+.ce-toggle-btn.active {
+  background: #ec407a;
+  color: #fff;
+}
+
+.ce-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.15rem 5% 2.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  box-sizing: border-box;
+}
+
+.ce-card {
+  border: 1px solid rgba(236, 64, 122, 0.12);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(131, 24, 67, 0.06);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.ce-card:hover {
+  box-shadow: 0 16px 36px rgba(131, 24, 67, 0.12);
+  transform: translateY(-3px);
+}
+
+.ce-card-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  min-height: 180px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 1.1rem;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+}
+
+.ce-card-cover.has-image {
+  padding: 0;
+}
+
+.ce-cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+.ce-cover-label {
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 700;
+  font-size: 1.35rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  padding: 1.1rem;
+}
+
+.ce-status {
+  text-align: center;
+  color: #be185d;
+  font-size: 0.95rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.ce-status.ce-error {
+  color: #b91c1c;
+}
+
+.ce-card-body {
+  padding: 1.15rem 1.25rem 1.35rem;
+}
+
+.ce-pill {
+  display: inline-block;
+  background: #fce4ec;
+  color: #ec407a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  margin-bottom: 0.7rem;
+}
+
+.ce-card-body h2 {
+  margin: 0 0 0.7rem;
+  font-size: 1.15rem;
+  line-height: 1.35;
+  color: #111;
+}
+
+.ce-meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin: 0 0 0.4rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.ce-meta svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ce-desc {
+  margin: 0.65rem 0 0;
+  color: #6b7280;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ce-empty {
+  text-align: center;
+  color: #9ca3af;
+  padding: 2.5rem 1rem;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px dashed #f8bbd0;
+}
+
+@media (max-width: 640px) {
+  .ce-header,
+  .ce-tabs,
+  .ce-toggle-wrap,
+  .ce-main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .ce-tabs {
+    flex-direction: column;
+  }
+
+  .ce-card-cover {
+    aspect-ratio: 4 / 3;
+    min-height: 170px;
+  }
+}

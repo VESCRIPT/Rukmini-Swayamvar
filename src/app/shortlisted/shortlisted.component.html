@@ -1,0 +1,88 @@
+<div class="shortlisted-view bg-gradient-to-br from-pink-50 via-white to-rose-50 min-h-screen">
+    <!-- Header -->
+    <header class="shortlisted-header sticky top-0 z-50 flex items-center justify-between">
+        <button class="back-btn" type="button" (click)="onBack()" aria-label="Go back">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <h1 class="shortlisted-title">Shortlisted Profiles</h1>
+        <div class="header-placeholder" aria-hidden="true"></div>
+
+        <!-- User context icon -->
+        <!-- <div class="h-12 w-12 rounded-full overflow-hidden border-2 border-pink-200 shadow-md">
+            <img src="assets/couple2.png" alt="Mascot" class="h-full w-full object-cover">
+        </div> -->
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 lg:p-10">
+        <!-- Profiles Grid -->
+        <div class="profiles-grid">
+            <div *ngFor="let profile of shortlistedProfiles" class="profile-card animate-slide-up">
+                <div class="profile-image-section">
+                    <img *ngIf="!showProfileIcon(profile)" [src]="profile.avatar" [alt]="profile.name" class="profile-image"
+                        loading="lazy" decoding="async" (error)="markAvatarFailed(profile.id)">
+                    <span *ngIf="showProfileIcon(profile)" class="profile-image-placeholder" aria-hidden="true">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                    </span>
+                    <span class="active-badge" *ngIf="profile.matchScore >= 90">Excellent Match</span>
+                </div>
+
+                <div class="profile-info">
+                    <h3 class="member-name">{{ profile.name }}</h3>
+                    <p class="member-details">
+                        {{ profile.age }} yrs | {{ profile.location }} | {{ profile.religion }}
+                    </p>
+                    <p class="member-bio">
+                        {{ profile.profession }} | {{ profile.income }}
+                    </p>
+
+                    <div class="action-icons action-icons-bottom">
+                        <button class="action-btn message" type="button" (click)="messageMember(profile.id)" title="Message">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            </svg>
+                        </button>
+                        <button class="action-btn like active" type="button" title="Liked">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </button>
+                        <button class="action-btn rating active" type="button" title="Shortlisted">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <button class="view-profile-btn" type="button" (click)="viewProfileDetail(profile.id)">
+                        View Full Profile
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="shortlistedProfiles.length === 0"
+            class="flex flex-col items-center justify-center py-24 animate-fade-in">
+            <div class="mb-8 w-32 h-32 bg-pink-50 rounded-full flex items-center justify-center text-pink-200">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+            </div>
+            <h2 class="text-3xl font-bold text-pink-900 mb-2 font-cinzel">No Shortlists Yet</h2>
+            <p class="text-pink-400 font-playfair italic text-lg max-w-md text-center">Your favorite heart-winners will
+                appear here. Start exploring!</p>
+            <button
+                class="mt-8 px-10 py-4 bg-gradient-to-r from-pink-500 to-rose-600 text-white rounded-full font-bold shadow-xl hover:scale-105 transition-all"
+                (click)="onBack()">Discover Matches</button>
+        </div>
+    </main>
+</div>

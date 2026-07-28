@@ -1,0 +1,70 @@
+<section #howWorksSection class="find-someone-section" aria-label="Find your Special Someone">
+  <div class="find-someone-inner">
+    <h2 class="find-someone-title how-works-heading">
+      {{ t?.findSomeoneTitle || 'Find your Special Someone' }}
+    </h2>
+
+    <div class="find-someone-steps">
+      <!-- Step 1: Sign Up -->
+      <div class="find-step how-step-card">
+        <div class="find-step-icon-wrap">
+          <div class="find-step-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 14h22a3 3 0 013 3v32a3 3 0 01-3 3H20a3 3 0 01-3-3V17a3 3 0 013-3z" stroke="#fff" stroke-width="2.6"/>
+              <path d="M25 12v4M37 12v4" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M24 26h16M24 33h16M24 40h10" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+              <path d="M40 38l7-12 3.5 2-7 12-4 .7L40 38z" fill="#fff"/>
+            </svg>
+          </div>
+          <span class="find-step-badge">1</span>
+        </div>
+        <h3 class="find-step-heading">{{ t?.stepSignUp || 'Sign Up' }}</h3>
+        <p class="find-step-desc">
+          {{ t?.stepSignUpDesc || 'Register for free & put up your Rukmini Swayamvar Profile' }}
+        </p>
+      </div>
+
+      <!-- Step 2: Connect -->
+      <div class="find-step how-step-card">
+        <div class="find-step-icon-wrap">
+          <div class="find-step-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="23" cy="22" r="8" stroke="#fff" stroke-width="2.6"/>
+              <path d="M9 46c0-7.7 6.3-14 14-14s14 6.3 14 14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+              <circle cx="41" cy="24" r="7" stroke="#fff" stroke-width="2.6"/>
+              <path d="M41 35c5.5 0 10 3.2 11.5 7.8" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+              <circle cx="48" cy="44" r="9" fill="#fff"/>
+              <path d="M43.8 44.2l2.8 2.8 5.8-5.8" stroke="#ed5295" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="find-step-badge">2</span>
+        </div>
+        <h3 class="find-step-heading">{{ t?.stepConnect || 'Connect' }}</h3>
+        <p class="find-step-desc">
+          {{ t?.stepConnectDesc || 'Select & Connect with Matches you like' }}
+        </p>
+      </div>
+
+      <!-- Step 3: Interact -->
+      <div class="find-step how-step-card">
+        <div class="find-step-icon-wrap">
+          <div class="find-step-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 16h30a6 6 0 016 6v16a6 6 0 01-6 6H24l-10 8v-8H8a6 6 0 01-6-6V22a6 6 0 016-6z"
+                stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/>
+              <path d="M40 26h12a5 5 0 015 5v12a5 5 0 01-5 5h-3v7l-8-7h-4"
+                stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/>
+              <rect x="16" y="24" width="16" height="12" rx="2" stroke="#fff" stroke-width="2.2"/>
+              <circle cx="24" cy="30" r="2.8" fill="#fff"/>
+            </svg>
+          </div>
+          <span class="find-step-badge">3</span>
+        </div>
+        <h3 class="find-step-heading">{{ t?.stepInteract || 'Interact' }}</h3>
+        <p class="find-step-desc">
+          {{ t?.stepInteractDesc || 'Become a Premium Member & Start a Conversation' }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

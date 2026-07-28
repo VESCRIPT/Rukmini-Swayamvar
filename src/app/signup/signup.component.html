@@ -1,0 +1,47 @@
+<div class="rp-page">
+
+  <!-- Back Button -->
+  <button class="rp-back" (click)="onBack()" aria-label="Go Back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M19 12H5M12 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <!-- Card -->
+  <div class="rp-card">
+
+    <!-- Brand -->
+    <div class="text-center mb-6">
+      <h1 class="font-cinzel gold-shine-text font-bold text-2xl md:text-3xl uppercase tracking-widest leading-tight">
+        {{ t.title }}
+      </h1>
+      <p
+        class="font-cinzel gold-shine-text font-semibold text-xs md:text-sm uppercase tracking-[0.3em] mt-0.5 opacity-80">
+        {{ t.subtitle }}
+      </p>
+    </div>
+
+    <!-- Form -->
+    <div class="rp-form">
+
+      <div class="rp-field">
+        <label class="rp-label">Email Address</label>
+        <input type="text" class="rp-input" [(ngModel)]="email" name="email" placeholder="Enter your email">
+      </div>
+
+      <div *ngIf="errorMessage" class="rp-error">{{ errorMessage }}</div>
+
+      <button type="button" class="rp-submit" (click)="onRegister()" [disabled]="isLoading">
+        <span *ngIf="!isLoading">{{ t.registerMe }}</span>
+        <span *ngIf="isLoading" class="rp-spinner"></span>
+      </button>
+
+    </div>
+
+    <p class="rp-signin-link">
+      Already have an account?
+      <span (click)="viewChange.emit('login')" class="rp-link">Login</span>
+    </p>
+
+  </div>
+</div>

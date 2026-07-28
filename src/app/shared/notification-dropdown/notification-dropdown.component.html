@@ -1,0 +1,68 @@
+<div class="notification-dropdown-panel" *ngIf="isOpen" role="dialog" aria-label="Notifications" (click)="$event.stopPropagation()">
+  <div class="dropdown-header">
+    <h3 class="dropdown-title">Notifications</h3>
+    <button
+      type="button"
+      class="mark-all-btn"
+      [disabled]="!hasUnread || markingAll"
+      (click)="markAllAsRead($event)">
+      Mark all as read
+    </button>
+  </div>
+
+  <div class="dropdown-filters" role="tablist" aria-label="Notification filter">
+    <button
+      type="button"
+      class="filter-chip"
+      role="tab"
+      [class.active]="filter === 'all'"
+      [attr.aria-selected]="filter === 'all'"
+      (click)="setFilter('all', $event)">
+      All
+    </button>
+    <button
+      type="button"
+      class="filter-chip"
+      role="tab"
+      [class.active]="filter === 'unread'"
+      [attr.aria-selected]="filter === 'unread'"
+      (click)="setFilter('unread', $event)">
+      Unread
+    </button>
+  </div>
+
+  <div class="dropdown-body">
+    <div class="dropdown-loading" *ngIf="loading">
+      <span class="loading-spinner" aria-hidden="true"></span>
+      <span>Loading notifications…</span>
+    </div>
+
+    <div class="dropdown-empty" *ngIf="!loading && notifications.length === 0">
+      {{ filter === 'unread' ? 'No unread notifications' : 'No notifications yet' }}
+    </div>
+
+    <ul class="notification-list" *ngIf="!loading && notifications.length > 0">
+      <li *ngFor="let item of notifications">
+        <button
+          type="button"
+          class="notification-item"
+          [class.unread]="!item.isRead"
+          [class.read]="item.isRead"
+          (click)="onNotificationClick(item, $event)">
+          <span class="unread-dot" *ngIf="!item.isRead" aria-hidden="true"></span>
+          <span class="notification-content">
+            <span class="notification-title">{{ item.title }}</span>
+            <span class="notification-message">{{ item.message }}</span>
+            <span class="notification-time">{{ timeAgo(item.createdAt) }}</span>
+          </span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="dropdown-footer">
+    <button type="button" class="view-all-btn" (click)="onViewAll($event)">
+      View all notifications
+    </button>
+  </div>
+</div>

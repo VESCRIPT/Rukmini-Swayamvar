@@ -1,0 +1,116 @@
+<div class="premium-container" [class.sidebar-open]="sidebarOpen">
+    <!-- Fixed Left Sidebar -->
+    <aside class="premium-sidebar" [class.open]="sidebarOpen">
+        <!-- <div class="sidebar-logo">
+            <span class="sidebar-logo-icon">🌸</span>
+            <div class="sidebar-logo-text">
+                <h3>RUKMINI</h3>
+                <p>Swayamvar</p>
+            </div>
+        </div> -->
+        <nav class="sidebar-nav">
+            <button type="button" class="nav-item" (click)="setView('dashboard'); closeSidebar()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                <span>Home</span>
+            </button>
+            <button type="button" class="nav-item" (click)="setView('messages'); closeSidebar()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                <span>Messages</span>
+            </button>
+            <button type="button" class="nav-item" (click)="setView('favorites'); closeSidebar()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+                <span>Favorites</span>
+            </button>
+            <button type="button" class="nav-item active">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+                <span>Premium</span>
+            </button>
+        </nav>
+    </aside>
+
+    <button class="sidebar-overlay" *ngIf="sidebarOpen" type="button" (click)="closeSidebar()" aria-label="Close sidebar"></button>
+
+    <!-- Main Content -->
+    <main class="premium-main-content">
+        <!-- Header -->
+        <header class="premium-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" type="button" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <button class="back-btn" (click)="onBack()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <h2 class="premium-title">Premium Plans</h2>
+            </div>
+        </header>
+
+        <!-- Pricing Content -->
+        <div class="premium-content">
+            <div class="pricing-header-text">
+                <h1>Upgrade Your Journey</h1>
+                <p>Choose the plan that suits your path to find your divine match</p>
+                <p class="current-plan-note">Current Plan: Free</p>
+            </div>
+
+            <div class="pricing-cards">
+                <div class="pricing-card free-plan gold">
+                    <div class="card-header">
+                        <h3>Gold</h3>
+                        <div class="free-price">Free Plan</div>
+                    </div>
+                    <ul class="features">
+                        <li><span class="check">✓</span> Create and manage your profile</li>
+                        <li><span class="check">✓</span> Browse matching profiles</li>
+                        <li><span class="check">✓</span> Send limited interests</li>
+                        <li><span class="check">✓</span> Upgrade anytime for premium benefits</li>
+                    </ul>
+                    <button class="plan-btn featured">Free Plan</button>
+                </div>
+
+                <div class="pricing-card free-plan platinum">
+                    <div class="card-header">
+                        <h3>Platinum</h3>
+                        <div class="free-price">Free Plan</div>
+                    </div>
+                    <ul class="features">
+                        <li><span class="check">✓</span> Create and manage your profile</li>
+                        <li><span class="check">✓</span> Browse matching profiles</li>
+                        <li><span class="check">✓</span> Send limited interests</li>
+                        <li><span class="check">✓</span> Upgrade anytime for premium benefits</li>
+                    </ul>
+                    <button class="plan-btn featured">Free Plan</button>
+                </div>
+
+                <div class="pricing-card free-plan diamond">
+                    <div class="card-header">
+                        <h3>Diamond</h3>
+                        <div class="free-price">Free Plan</div>
+                    </div>
+                    <ul class="features">
+                        <li><span class="check">✓</span> Create and manage your profile</li>
+                        <li><span class="check">✓</span> Browse matching profiles</li>
+                        <li><span class="check">✓</span> Send limited interests</li>
+                        <li><span class="check">✓</span> Upgrade anytime for premium benefits</li>
+                    </ul>
+                    <button class="plan-btn featured">Free Plan</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

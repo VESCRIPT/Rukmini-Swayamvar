@@ -1,0 +1,131 @@
+<div class="blog-page">
+  <header class="blog-top-bar">
+    <button type="button" class="blog-back-btn" (click)="goBack()" aria-label="Go back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <h1 class="blog-top-title">{{ selectedPost ? 'Article' : 'Blog' }}</h1>
+    <div class="blog-placeholder"></div>
+  </header>
+
+  <!-- Article reading view -->
+  <article class="blog-article" *ngIf="selectedPost as post">
+    <div class="blog-article-layout">
+      <div class="blog-article-media">
+        <img
+          *ngIf="post.image"
+          [src]="post.image"
+          [alt]="post.title"
+          loading="eager"
+          decoding="async"
+          (error)="onCardImageError(post)" />
+        <div class="blog-article-media-fallback" *ngIf="!post.image" aria-hidden="true"></div>
+      </div>
+
+      <div class="blog-article-info">
+        <header class="blog-article-header">
+          <span class="blog-pill">{{ post.category }}</span>
+          <h2>{{ post.title }}</h2>
+          <p class="blog-meta">
+            <span>{{ post.author }}</span>
+            <span class="blog-dot" aria-hidden="true">·</span>
+            <span>{{ post.date }}</span>
+            <span class="blog-dot" aria-hidden="true">·</span>
+            <span>{{ post.readTime }}</span>
+          </p>
+        </header>
+
+        <div class="blog-article-body">
+          <p class="blog-article-dek">{{ post.excerpt }}</p>
+          <p *ngFor="let paragraph of post.content">{{ paragraph }}</p>
+        </div>
+
+        <footer class="blog-article-footer">
+          <button type="button" class="blog-text-btn" (click)="closePost()">← Back to all articles</button>
+        </footer>
+      </div>
+    </div>
+  </article>
+
+  <!-- Blog home -->
+  <main class="blog-main" *ngIf="!selectedPost">
+    <nav class="blog-cats" aria-label="Blog categories">
+      <button
+        type="button"
+        class="blog-cat"
+        *ngFor="let cat of categories"
+        [class.blog-cat-active]="activeCategory === cat"
+        (click)="setCategory(cat)">
+        {{ cat }}
+      </button>
+    </nav>
+
+    <!-- Featured -->
+    <article
+      class="blog-featured"
+      *ngIf="featuredPost as post"
+      (click)="openPost(post)"
+      (keydown.enter)="openPost(post)"
+      tabindex="0"
+      role="button"
+      [attr.aria-label]="'Read: ' + post.title">
+      <div class="blog-featured-media">
+        <img
+          *ngIf="post.image"
+          [src]="post.image"
+          [alt]="post.title"
+          loading="eager"
+          decoding="async"
+          (error)="onCardImageError(post)" />
+        <div class="blog-featured-fallback" *ngIf="!post.image" aria-hidden="true"></div>
+      </div>
+      <div class="blog-featured-body">
+        <span class="blog-pill">Featured · {{ post.category }}</span>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.excerpt }}</p>
+        <div class="blog-featured-meta">
+          <span class="blog-meta">{{ post.date }} · {{ post.readTime }}</span>
+          <span class="blog-cta">Read article →</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Article grid -->
+    <section class="blog-grid" aria-label="Blog articles" *ngIf="visiblePosts.length > 0">
+      <article
+        class="blog-card"
+        *ngFor="let post of visiblePosts; let i = index"
+        (click)="openPost(post)"
+        (keydown.enter)="openPost(post)"
+        tabindex="0"
+        role="button"
+        [attr.aria-label]="'Read: ' + post.title">
+        <div class="blog-card-media">
+          <img
+            *ngIf="post.image"
+            [src]="post.image"
+            [alt]="post.title"
+            [attr.loading]="i < 3 ? 'eager' : 'lazy'"
+            decoding="async"
+            (error)="onCardImageError(post)" />
+          <div class="blog-card-fallback" *ngIf="!post.image" aria-hidden="true"></div>
+          <span class="blog-pill blog-pill-float">{{ post.category }}</span>
+        </div>
+        <div class="blog-card-body">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.excerpt }}</p>
+          <div class="blog-card-foot">
+            <span class="blog-meta">{{ post.date }} · {{ post.readTime }}</span>
+            <span class="blog-cta">Read →</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <p class="blog-empty" *ngIf="visiblePosts.length === 0 && !featuredPost">
+      No articles in this category yet.
+    </p>
+  </main>
+</div>

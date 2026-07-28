@@ -1,0 +1,15 @@
+/* Email OTP Component Styles */
+
+input[type="text"]::-webkit-outer-spin-button,
+input[type="text"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="text"][inputmode="numeric"] {
+  font-family: monospace;
+}
+
+.otp-back-btn {
+  box-shadow: 0 2px 8px rgba(236, 64, 122, 0.12);
+}

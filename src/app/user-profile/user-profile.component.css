@@ -1,0 +1,427 @@
+/* ═══════════════════════════════════════════════════════
+   LOGIN PAGE  –  lp- prefix · Baby pink · Responsive
+   ═══════════════════════════════════════════════════════ */
+
+/* ── FORGOT PASSWORD ─────────────────────────────────*/
+.lp-forgot-wrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -6px;
+}
+
+.lp-forgot {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.78rem, 1.6vw, 0.86rem);
+  color: #e91e63;
+  font-weight: 600;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.lp-forgot:hover {
+  color: #ad1457;
+}
+
+/* ── REGISTER LINK ───────────────────────────────────*/
+.lp-register-row {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.80rem, 1.6vw, 0.88rem);
+  color: rgba(90, 10, 36, 0.70);
+  margin: clamp(12px, 2vh, 18px) 0 0 0;
+}
+
+.lp-register-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: inherit;
+  font-weight: 700;
+  color: #e91e63;
+  padding: 0;
+  margin-left: 4px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.lp-register-link:hover {
+  color: #ad1457;
+}
+
+/* ── PAGE ───────────────────────────────────────────── */
+.lp-page {
+  position: fixed;
+  inset: 0;
+  background: #fce4ec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(20px, 4vh, 40px) clamp(14px, 4vw, 32px);
+  overflow-y: auto;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── BACK BUTTON ─────────────────────────────────────*/
+.lp-back {
+  position: fixed;
+  top: clamp(12px, 2.5vh, 24px);
+  left: clamp(12px, 2.5vw, 24px);
+  z-index: 50;
+  width: clamp(38px, 6vw, 48px);
+  height: clamp(38px, 6vw, 48px);
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #e91e63;
+  box-shadow: 0 4px 14px rgba(220, 60, 100, 0.18);
+  transition: background 0.22s, transform 0.22s, box-shadow 0.22s;
+}
+
+.lp-back svg {
+  width: clamp(16px, 2.5vw, 22px);
+  height: clamp(16px, 2.5vw, 22px);
+}
+
+.lp-back:hover {
+  background: rgba(255, 200, 220, 0.90);
+  transform: translateX(-3px);
+  box-shadow: 0 6px 20px rgba(220, 60, 100, 0.28);
+}
+
+/* ── CARD ─────────────────────────────────────────── */
+.lp-card {
+  background: #fff;
+  border-radius: clamp(20px, 4vw, 36px);
+  box-shadow:
+    0 8px 40px rgba(220, 60, 100, 0.12),
+    0 2px 8px rgba(220, 60, 100, 0.06);
+  padding: clamp(24px, 5vh, 44px) clamp(20px, 6vw, 48px);
+  width: 100%;
+  max-width: min(440px, 96vw);
+  border: 1px solid rgba(252, 200, 220, 0.55);
+  animation: lpSlideIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+@keyframes lpSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-22px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── BRAND ────────────────────────────────────────── */
+.lp-brand {
+  text-align: center;
+  margin-bottom: clamp(16px, 3vh, 28px);
+}
+
+.lp-brand-title {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728, #fcf6ba, #bf953f);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: lpGoldShine 2.5s linear infinite;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+@keyframes lpGoldShine {
+  to {
+    background-position: 250% center;
+  }
+}
+
+.lp-brand-sub {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.72rem, 1.8vw, 0.88rem);
+  color: #e91e63;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* ── WELCOME ──────────────────────────────────────── */
+.lp-welcome {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-style: italic;
+  color: #7b1535;
+  font-weight: 500;
+  margin: 0 0 clamp(16px, 3vh, 24px) 0;
+}
+
+/* ── FORM ─────────────────────────────────────────── */
+.lp-form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2.2vh, 18px);
+}
+
+.lp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lp-label {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  font-weight: 700;
+  color: #5a0a24;
+  text-transform: capitalize;
+  letter-spacing: 0.08em;
+  margin-left: 4px;
+}
+
+/* Input wrapper for password eye toggle */
+.lp-input-wrap {
+  position: relative;
+}
+
+.lp-input {
+  width: 100%;
+  background: rgba(253, 242, 248, 0.55);
+  border: 1.5px solid #fce7f3;
+  border-radius: clamp(10px, 2vw, 14px);
+  padding: clamp(11px, 1.8vh, 15px) clamp(14px, 2.5vw, 20px);
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.85rem, 1.8vw, 0.96rem);
+  color: #4a0020;
+  outline: none;
+  transition: border-color 0.22s, background 0.22s, box-shadow 0.22s;
+  box-sizing: border-box;
+}
+
+.lp-input:focus {
+  border-color: #e91e63;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(233, 30, 99, 0.12);
+}
+
+.lp-input::placeholder {
+  color: rgba(180, 80, 110, 0.40);
+}
+
+/* Password eye button */
+.lp-eye {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(180, 60, 100, 0.55);
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.lp-eye svg {
+  width: 18px;
+  height: 18px;
+}
+
+.lp-eye:hover {
+  color: #e91e63;
+}
+
+/* Error message */
+.lp-error {
+  color: #c62828;
+  font-size: clamp(0.75rem, 1.5vw, 0.84rem);
+  text-align: center;
+  background: rgba(198, 40, 40, 0.06);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+/* Submit button */
+.lp-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #e91e63, #ad1457);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: clamp(13px, 2.2vh, 17px);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 6px 22px rgba(233, 30, 99, 0.38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  animation: lpPulse 2.6s infinite;
+}
+
+.lp-submit:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(233, 30, 99, 0.50);
+}
+
+.lp-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@keyframes lpPulse {
+  0% {
+    box-shadow: 0 6px 22px rgba(233, 30, 99, 0.38), 0 0 0 0 rgba(233, 30, 99, 0.40);
+  }
+
+  70% {
+    box-shadow: 0 6px 22px rgba(233, 30, 99, 0.38), 0 0 0 14px rgba(233, 30, 99, 0);
+  }
+
+  100% {
+    box-shadow: 0 6px 22px rgba(233, 30, 99, 0.38), 0 0 0 0 rgba(233, 30, 99, 0);
+  }
+}
+
+/* Loading spinner */
+.lp-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: lpSpin 0.7s linear infinite;
+}
+
+@keyframes lpSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── DIVIDER ──────────────────────────────────────── */
+.lp-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: clamp(14px, 2.5vh, 22px) 0;
+}
+
+.lp-div-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 60, 100, 0.25), transparent);
+}
+
+.lp-div-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: rgba(130, 40, 65, 0.50);
+  letter-spacing: 0.05em;
+}
+
+/* ── GOOGLE BUTTON ────────────────────────────────── */
+.lp-google {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid rgba(200, 200, 210, 0.70);
+  border-radius: 50px;
+  padding: clamp(11px, 2vh, 15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.82rem, 1.7vw, 0.92rem);
+  font-weight: 600;
+  color: #444;
+  transition: background 0.22s, border-color 0.22s, box-shadow 0.22s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.lp-google:hover {
+  background: #f8f8f8;
+  border-color: rgba(180, 180, 190, 0.90);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+}
+
+.lp-google-icon {
+  width: clamp(18px, 3vw, 22px);
+  height: clamp(18px, 3vw, 22px);
+  flex-shrink: 0;
+}
+
+/* ══ RESPONSIVE ══════════════════════════════════════*/
+@media (max-width: 480px) {
+  .lp-card {
+    border-radius: 20px;
+  }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .lp-page {
+    align-items: center;
+    padding-top: 10px;
+  }
+
+  .lp-card {
+    padding: 16px 24px;
+    margin: auto;
+  }
+
+  .lp-brand {
+    margin-bottom: 10px;
+  }
+
+  .lp-welcome {
+    margin-bottom: 10px;
+  }
+
+  .lp-form {
+    gap: 10px;
+  }
+}
+
+/* Font classes used in page */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}

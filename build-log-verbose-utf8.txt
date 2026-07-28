@@ -1,0 +1,1347 @@
+﻿[33mΓ¥»[39m Building...
+node.exe : 
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (:String) [],    
+ RemoteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+  
+polyfills-B6TNHZQ6.js  
+33.8kb
+
+Done in 306ms
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:4
+:19:
+      4 Γöé            
+ <h1>{{ 
+t?.aboutUsHeading 
+}}</h1>
+        Γò╡            
+        ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:5
+:19:
+      5 Γöé            
+ <h2>{{ 
+t?.aboutUsTitle }}</h2>
+        Γò╡            
+        ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:1
+0:23:
+      10 Γöé           
+      <h3>{{ 
+t?.aboutUsIntroHeading 
+}}</h3>
+         Γò╡           
+             ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:1
+2:23:
+      12 Γöé           
+          {{ 
+t?.aboutUsIntro }}
+         Γò╡           
+             ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:1
+7:23:
+      17 Γöé           
+      <h3>{{ 
+t?.missionHeading 
+}}</h3>
+         Γò╡           
+             ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:1
+9:23:
+      19 Γöé           
+          {{ 
+t?.missionText }}
+         Γò╡           
+             ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:2
+4:23:
+      24 Γöé           
+      <h3>{{ 
+t?.featuresHeading 
+}}</h3>
+         Γò╡           
+             ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:2
+6:35:
+      26 Γöé ...       
+         
+<li><strong>{{ 
+t?.feature1Title 
+}}:</strong> {{...
+         Γò╡           
+                       
+ ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:2
+6:68:
+      26 Γöé 
+...strong>{{ 
+t?.feature1Title 
+}}:</strong> {{ 
+t?.feature1Desc }}</li>
+         Γò╡           
+                       
+             ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:2
+7:35:
+      27 Γöé ...       
+         
+<li><strong>{{ 
+t?.feature2Title 
+}}:</strong> {{...
+         Γò╡           
+                       
+ ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:2
+7:68:
+      27 Γöé 
+...strong>{{ 
+t?.feature2Title 
+}}:</strong> {{ 
+t?.feature2Desc }}</li>
+         Γò╡           
+                       
+             ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:2
+8:35:
+      28 Γöé ...       
+         
+<li><strong>{{ 
+t?.feature3Title 
+}}:</strong> {{...
+         Γò╡           
+                       
+ ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:2
+8:68:
+      28 Γöé 
+...strong>{{ 
+t?.feature3Title 
+}}:</strong> {{ 
+t?.feature3Desc }}</li>
+         Γò╡           
+                       
+             ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:2
+9:35:
+      29 Γöé ...       
+         
+<li><strong>{{ 
+t?.feature4Title 
+}}:</strong> {{...
+         Γò╡           
+                       
+ ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:2
+9:68:
+      29 Γöé 
+...strong>{{ 
+t?.feature4Title 
+}}:</strong> {{ 
+t?.feature4Desc }}</li>
+         Γò╡           
+                       
+             ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:3
+0:35:
+      30 Γöé ...       
+         
+<li><strong>{{ 
+t?.feature5Title 
+}}:</strong> {{...
+         Γò╡           
+                       
+ ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:3
+0:68:
+      30 Γöé 
+...strong>{{ 
+t?.feature5Title 
+}}:</strong> {{ 
+t?.feature5Desc }}</li>
+         Γò╡           
+                       
+             ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG9: 
+Property 't' does not 
+exist on type 
+'AboutUsComponent'. 
+[plugin 
+angular-compiler]
+
+    src/app/about-us/ab
+out-us.component.html:3
+6:25:
+      36 Γöé           
+          ΓåÉ {{ 
+t?.aboutUsBack }}
+         Γò╡           
+             ^
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+      8 Γöé   
+templateUrl: './about-u
+s.component.html',
+        Γò╡            
+    ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+
+X [ERROR] NG8002: 
+Can't bind to 't' 
+since it isn't a known 
+property of 
+'app-about-us'.
+1. If 'app-about-us' 
+is an Angular 
+component and it has 
+'t' input, then verify 
+that it is included in 
+the 
+'@Component.imports' 
+of this component.
+2. If 'app-about-us' 
+is a Web Component 
+then add 'CUSTOM_ELEMEN
+TS_SCHEMA' to the 
+'@Component.schemas' 
+of this component to 
+suppress this message.
+3. To allow any 
+property add 
+'NO_ERRORS_SCHEMA' to 
+the 
+'@Component.schemas' 
+of this component. 
+[plugin 
+angular-compiler]
+
+    src/app/app.compone
+nt.html:26:51:
+      26 Γöé 
+...currentView === 
+'about-us'" [t]="t" (vi
+ewChange)="setView($any
+(...
+         Γò╡           
+                     
+~~~~~~~
+
+  Error occurs in the 
+template of component 
+AppComponent.
+
+    src/app/app.compone
+nt.ts:80:15:
+      80 Γöé   
+templateUrl: 
+'./app.component.html',
+         Γò╡           
+     
+~~~~~~~~~~~~~~~~~~~~~~
+
+19 errors
+[32mΓ£ö[39m Building...
+Application bundle generation failed. [4.951 seconds]
+
+[1m[31m[31mX [41;31
+m[[41;97mERROR[41;31m
+][0m [1mNG9: 
+Property 't' does not 
+exist on type 'AboutUsC
+omponent'.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:4
+:19:
+[37m      4 Γöé       
+      <h1>{{ [32mt[37
+m?.aboutUsHeading 
+}}</h1>
+        Γò╡            
+        [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:5
+:19:
+[37m      5 Γöé       
+      <h2>{{ [32mt[37
+m?.aboutUsTitle }}</h2>
+        Γò╡            
+        [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:1
+0:23:
+[37m      10 Γöé      
+           <h3>{{ [32m
+t[37m?.aboutUsIntroHea
+ding }}</h3>
+         Γò╡           
+             [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:1
+2:23:
+[37m      12 Γöé      
+               {{ [32m
+t[37m?.aboutUsIntro }}
+         Γò╡           
+             [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:1
+7:23:
+[37m      17 Γöé      
+           <h3>{{ [32m
+t[37m?.missionHeading 
+}}</h3>
+         Γò╡           
+             [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:1
+9:23:
+[37m      19 Γöé      
+               {{ [32m
+t[37m?.missionText }}
+         Γò╡           
+             [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:2
+4:23:
+[37m      24 Γöé      
+           <h3>{{ [32m
+t[37m?.featuresHeading
+ }}</h3>
+         Γò╡           
+             [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:2
+6:35:
+[37m      26 Γöé ...  
+              
+<li><strong>{{ [32mt[
+37m?.feature1Title 
+}}:</strong> {{...
+         Γò╡           
+                       
+ [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:2
+6:68:
+[37m      26 Γöé 
+...strong>{{ 
+t?.feature1Title 
+}}:</strong> {{ [32mt
+[37m?.feature1Desc 
+}}</li>
+         Γò╡           
+                       
+             [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:2
+7:35:
+[37m      27 Γöé ...  
+              
+<li><strong>{{ [32mt[
+37m?.feature2Title 
+}}:</strong> {{...
+         Γò╡           
+                       
+ [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:2
+7:68:
+[37m      27 Γöé 
+...strong>{{ 
+t?.feature2Title 
+}}:</strong> {{ [32mt
+[37m?.feature2Desc 
+}}</li>
+         Γò╡           
+                       
+             [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:2
+8:35:
+[37m      28 Γöé ...  
+              
+<li><strong>{{ [32mt[
+37m?.feature3Title 
+}}:</strong> {{...
+         Γò╡           
+                       
+ [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:2
+8:68:
+[37m      28 Γöé 
+...strong>{{ 
+t?.feature3Title 
+}}:</strong> {{ [32mt
+[37m?.feature3Desc 
+}}</li>
+         Γò╡           
+                       
+             [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:2
+9:35:
+[37m      29 Γöé ...  
+              
+<li><strong>{{ [32mt[
+37m?.feature4Title 
+}}:</strong> {{...
+         Γò╡           
+                       
+ [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:2
+9:68:
+[37m      29 Γöé 
+...strong>{{ 
+t?.feature4Title 
+}}:</strong> {{ [32mt
+[37m?.feature4Desc 
+}}</li>
+         Γò╡           
+                       
+             [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:3
+0:35:
+[37m      30 Γöé ...  
+              
+<li><strong>{{ [32mt[
+37m?.feature5Title 
+}}:</strong> {{...
+         Γò╡           
+                       
+ [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:3
+0:68:
+[37m      30 Γöé 
+...strong>{{ 
+t?.feature5Title 
+}}:</strong> {{ [32mt
+[37m?.feature5Desc 
+}}</li>
+         Γò╡           
+                       
+             [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG9: Property 't' 
+does not exist on type 
+'AboutUsComponent'.[0m
+ [1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/about-us/ab
+out-us.component.html:3
+6:25:
+[37m      36 Γöé      
+               ΓåÉ 
+{[32m{[37m 
+t?.aboutUsBack }}
+         Γò╡           
+             [32m^[0m
+
+  Error occurs in the 
+template of component 
+AboutUsComponent.
+
+    src/app/about-us/ab
+out-us.component.ts:8:1
+5:
+[37m      8 Γöé   
+templateUrl: [32m'./ab
+out-us.component.html'
+[37m,
+        Γò╡            
+    [32m~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97
+mERROR[41;31m][0m 
+[1mNG8002: Can't bind 
+to 't' since it isn't 
+a known property of 
+'app-about-us'.
+1. If 'app-about-us' 
+is an Angular 
+component and it has 
+'t' input, then verify 
+that it is included in 
+the 
+'@Component.imports' 
+of this component.
+2. If 'app-about-us' 
+is a Web Component 
+then add 'CUSTOM_ELEMEN
+TS_SCHEMA' to the 
+'@Component.schemas' 
+of this component to 
+suppress this message.
+3. To allow any 
+property add 
+'NO_ERRORS_SCHEMA' to 
+the 
+'@Component.schemas' 
+of this component.[0m 
+[1m[35m[plugin 
+angular-compiler][0m
+
+    src/app/app.compone
+nt.html:26:51:
+[37m      26 Γöé 
+...currentView === 
+'about-us'" 
+[32m[t]="t"[37m (view
+Change)="setView($any(.
+..
+         Γò╡           
+                     
+[32m~~~~~~~[0m
+
+  Error occurs in the 
+template of component 
+AppComponent.
+
+    src/app/app.compone
+nt.ts:80:15:
+[37m      80 Γöé   
+templateUrl: [32m'./ap
+p.component.html'[37m,
+         Γò╡           
+     [32m~~~~~~~~~~~~~
+~~~~~~~~~[0m
+
+[39m[22m

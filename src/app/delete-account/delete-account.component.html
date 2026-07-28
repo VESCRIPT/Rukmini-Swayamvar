@@ -1,0 +1,81 @@
+<div class="delete-page-wrapper min-h-screen bg-[#fff5f9] relative overflow-hidden text-center font-inter">
+    <div class="delete-top-bar">
+        <button class="delete-back-btn" (click)="goBack()" aria-label="Back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <h1 class="delete-top-title">Delete Account</h1>
+        <div class="delete-placeholder"></div>
+    </div>
+
+    <div class="delete-content-wrap pb-12 px-6 flex items-center justify-center">
+    <div
+        class="max-w-md w-full bg-white rounded-[2.5rem] shadow-2xl p-10 relative z-10 border border-pink-50 animate-fade-in">
+
+        <div class="mb-8">
+            <!-- <div class="text-4xl mb-4">🌸</div> -->
+            <h2 class="font-cinzel gold-shine-text font-bold text-2xl uppercase tracking-widest mb-1">
+                {{ t?.title }}
+            </h2>
+            <p class="font-playfair italic text-[#F33A6A] text-sm font-bold uppercase tracking-widest">
+                {{ t?.subtitle }}
+            </p>
+        </div>
+
+        <h3 class="font-Roboto text-pink-900 text-xl mb-6 font-medium">
+            {{ t?.deleteAccountHeading }}
+        </h3>
+
+        <form class="space-y-4 text-left" #deleteForm="ngForm">
+            <div class="space-y-1">
+                <label class="font-playfair text-pink-1000/60 text-xs uppercase font-bold ml-1">
+                    {{ t?.emailLabel }}
+                </label>
+                <input type="text" class="custom-input" [(ngModel)]="email" name="email" placeholder="Enter your email">
+            </div>
+
+            <div class="space-y-1">
+                <label class="font-playfair text-pink-1000/60 text-xs uppercase font-bold ml-1">
+                    {{ t?.passwordLabel }}
+                </label>
+                <input type="password" class="custom-input" [(ngModel)]="password" name="password"
+                    placeholder="Enter your password">
+            </div>
+
+
+            <div class="pt-4 space-y-4">
+                <button type="button" (click)="onDeleteAccount()" [disabled]="isLoading"
+                    class="w-full btn-pink py-4 rounded-full font-bold text-base shadow-xl transition-all hover:scale-[1.01] active:scale-95 uppercase tracking-widest">
+                    <span *ngIf="!isLoading">{{ t?.deleteAccount }}</span>
+                    <span *ngIf="isLoading">Verifying...</span>
+                </button>
+
+                <button type="button" (click)="goBack()"
+                    class="w-full py-2 text-pink-900/40 hover:text-pink-600 transition-all font-playfair italic text-sm">
+                    Cancel and return Home
+                </button>
+            </div>
+        </form>
+    </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div *ngIf="showSuccessPopup"
+        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in px-6">
+        <div
+            class="bg-white rounded-[2rem] p-12 max-w-sm w-full text-center scale-in shadow-2xl border-t-4 border-pink-500">
+            <div class="text-6xl mb-6">🌸</div>
+            <h3 class="font-cinzel text-xl mb-4 font-bold text-pink-950 tracking-widest">{{ t?.deleteSuccessMessage }}
+            </h3>
+            <p class="font-playfair text-pink-900/60 text-base mb-10 italic">
+                "May your future path be blessed with joy and new beginnings."
+            </p>
+            <button (click)="closePopup()"
+                class="w-full btn-pink py-4 rounded-full font-bold text-base shadow-xl uppercase tracking-widest">
+                OK
+            </button>
+        </div>
+    </div>
+</div>

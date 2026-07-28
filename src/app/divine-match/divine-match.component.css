@@ -1,0 +1,56 @@
+.font-roboto {
+  font-family: 'Roboto';
+}
+
+.font-roboto {
+  font-family: 'Roboto';
+}
+
+
+.divine-match-section {
+  /* Using a very soft pink background to distinguish it from the pure white sections */
+  background-color: #fff5f9;
+}
+
+.artwork-container img {
+  /* Creating the soft portrait look from your reference */
+  aspect-ratio: 3/4;
+  transition: transform 0.5s ease;
+}
+
+.artwork-container:hover img {
+  transform: scale(1.02);
+}
+
+.quote-box {
+  background: rgba(255, 255, 255, 0.5);
+  padding-right: 1.5rem;
+  border-radius: 0 1.5rem 1.5rem 0;
+}
+
+/* Medium text scaling adjustments */
+h2 {
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+  .divine-match-section {
+    text-align: center;
+  }
+
+  .divine-match-section .text-left {
+    text-align: center;
+  }
+
+  .divine-match-section .border-l-4 {
+    border-left: none;
+    border-top: 4px solid #db2777;
+    /* pink-600 */
+    padding-left: 0;
+    padding-top: 1rem;
+  }
+
+  .divine-match-section .w-12 {
+    margin: 0.5rem auto 0;
+  }
+}

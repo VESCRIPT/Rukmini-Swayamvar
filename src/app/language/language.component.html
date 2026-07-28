@@ -1,0 +1,68 @@
+<div class="language-container">
+  <!-- Header -->
+  <div class="language-header">
+    <button class="back-btn" (click)="goBack()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <h1>Language</h1>
+    <div class="placeholder"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="language-content">
+    <!-- Subtitle -->
+    <p class="subtitle">Choose your preferred language to see matches</p>
+
+    <!-- Search Bar -->
+    <!-- <div class="search-wrapper">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+      <input 
+        type="text" 
+        class="search-input" 
+        placeholder="Search Language"
+        [(ngModel)]="searchQuery">
+    </div> -->
+
+    <!-- Language List -->
+    <div class="language-list">
+      <div *ngFor="let language of filteredLanguages" class="language-item"
+        [class.selected]="selectedLanguage === language.code" (click)="selectLanguage(language.code)">
+        <div class="language-info">
+          <div class="language-flag">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+              </path>
+            </svg>
+          </div>
+          <div class="language-text">
+            <span class="language-name">{{ language.name }}</span>
+            <span class="language-native">{{ language.nativeName }}</span>
+          </div>
+        </div>
+        <div class="radio-check" [class.checked]="selectedLanguage === language.code">
+          <svg *ngIf="selectedLanguage === language.code" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+            viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Button -->
+    <div class="button-section">
+      <button class="update-btn" (click)="updateLanguage()">
+        UPDATE
+      </button>
+    </div>
+  </div>
+</div>

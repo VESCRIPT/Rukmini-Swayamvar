@@ -1,0 +1,190 @@
+<div class="messages-container" [class.sidebar-open]="sidebarOpen">
+  <!-- Fixed Left Sidebar -->
+  <aside class="messages-sidebar" [class.open]="sidebarOpen">
+    <nav class="sidebar-nav">
+      <button type="button" class="nav-item" (click)="setView('dashboard'); closeSidebar()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        <span>Home</span>
+      </button>
+      <button type="button" class="nav-item active" (click)="closeSidebar()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+        <span>Messages</span>
+      </button>
+      <button type="button" class="nav-item" (click)="setView('favorites'); closeSidebar()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </svg>
+        <span>Favorites</span>
+      </button>
+      <button type="button" class="nav-item" (click)="setView('premium'); closeSidebar()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        </svg>
+        <span>Premium</span>
+      </button>
+    </nav>
+  </aside>
+
+  <button class="sidebar-overlay" *ngIf="sidebarOpen" type="button" (click)="closeSidebar()"
+    aria-label="Close sidebar"></button>
+
+  <!-- Main Content -->
+  <main class="messages-main-content">
+    <!-- Header -->
+    <header class="messages-header">
+      <div class="header-left">
+        <button class="sidebar-toggle" type="button" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <button class="back-btn" (click)="onBack()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h2 class="messages-title">Messages</h2>
+      </div>
+      <div class="header-right">
+        <div class="messages-menu-wrap">
+          <button type="button" class="messages-menu-trigger" (click)="toggleHeaderMenu($event)"
+            aria-label="More options" [attr.aria-expanded]="headerMenuOpen" aria-haspopup="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <circle cx="12" cy="5" r="2" />
+              <circle cx="12" cy="12" r="2" />
+              <circle cx="12" cy="19" r="2" />
+            </svg>
+          </button>
+          <ul class="messages-dropdown" *ngIf="headerMenuOpen" role="menu">
+            <li role="none">
+              <button type="button" class="messages-dropdown-item" role="menuitem" (click)="onMessagesMenuSelect('refresh')">Refresh</button>
+            </li>
+            <li role="none">
+              <button type="button" class="messages-dropdown-item" role="menuitem" (click)="onMessagesMenuSelect('notifications')">Notification settings</button>
+            </li>
+            <li role="none">
+              <button type="button" class="messages-dropdown-item" role="menuitem" (click)="onMessagesMenuSelect('settings')">Settings</button>
+            </li>
+            <li role="none">
+              <button type="button" class="messages-dropdown-item" role="menuitem" (click)="onMessagesMenuSelect('help')">Help</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Messages Content -->
+    <div class="messages-content">
+      <!-- Search Bar -->
+      <div class="search-section">
+        <div class="search-bar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+          <input type="text" placeholder="Search messages..." (input)="onSearch($event)">
+        </div>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="tab-section">
+        <button class="tab-btn" [class.active]="activeTab === 'chats'" (click)="setTab('chats')">
+          Chats
+        </button>
+        <button class="tab-btn" [class.active]="activeTab === 'request'" (click)="setTab('request')">
+          Request
+        </button>
+      </div>
+
+      <!-- Loading -->
+      <div class="messages-state messages-loading" *ngIf="loadingConversations">
+        <p>Loading messages...</p>
+      </div>
+
+      <!-- Error -->
+      <div class="messages-state messages-error" *ngIf="!loadingConversations && conversationsError">
+        <p>{{ conversationsError }}</p>
+        <button type="button" class="retry-btn" (click)="retryLoadConversations()">Try again</button>
+      </div>
+
+      <!-- Connection requests: only in Request section (not auto-accepted; Accept button here) -->
+      <div class="connection-requests-section"
+        *ngIf="!loadingConversations && !conversationsError && activeTab === 'request'">
+        <h3 class="connection-requests-heading">Connection requests</h3>
+        <div class="connection-request-item" *ngFor="let req of connectionRequests">
+          <div class="chat-avatar">
+            <img *ngIf="req.avatar" [src]="req.avatar" [alt]="req.name" (error)="req.avatar = ''">
+            <span *ngIf="!req.avatar" class="chat-avatar-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+              </svg>
+            </span>
+          </div>
+          <div class="connection-request-info">
+            <h4 class="chat-name">{{ req.name }}</h4>
+            <p class="connection-request-text">Wants to connect with you</p>
+          </div>
+          <div class="connection-request-actions">
+            <button type="button" class="connection-btn decline"
+              (click)="declineConnectionRequest(req); $event.stopPropagation()">Decline</button>
+            <button type="button" class="connection-btn accept"
+              (click)="acceptConnectionRequest(req); $event.stopPropagation()">Accept</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chats heading -->
+      <h3 class="chats-section-heading"
+        *ngIf="!loadingConversations && !conversationsError && activeTab === 'chats' && filteredChats.length > 0">Chats
+      </h3>
+
+      <!-- Chat List (only for Chats tab) -->
+      <div class="chat-list" *ngIf="!loadingConversations && !conversationsError && activeTab === 'chats'">
+        <div class="chat-item" *ngFor="let user of filteredChats" (click)="onChatClick(user)">
+          <div class="chat-avatar">
+            <img *ngIf="!showProfileIcon(user)" [src]="user.avatar" [alt]="user.name"
+              (error)="markAvatarFailed(user.id)">
+            <span *ngIf="showProfileIcon(user)" class="chat-avatar-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+              </svg>
+            </span>
+            <span class="online-status" *ngIf="user.isOnline"></span>
+          </div>
+          <div class="chat-info">
+            <div class="chat-header">
+              <h4 class="chat-name">{{ user.name }}</h4>
+              <span class="chat-header-right">
+                <span class="chat-time">{{ user.time }}</span>
+                <span class="unread-badge" *ngIf="user.unreadCount > 0">{{ user.unreadCount }}</span>
+              </span>
+            </div>
+            <div class="chat-footer">
+              <p class="chat-message">{{ user.lastMessage }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- Empty state for Chats -->
+        <div class="messages-state messages-empty" *ngIf="filteredChats.length === 0">
+          <p>No conversations yet.</p>
+          <p class="messages-empty-hint">Start a chat from a profile.</p>
+        </div>
+      </div>
+
+      <!-- Empty state for Request tab when no connection requests -->
+      <div class="messages-state messages-empty"
+        *ngIf="!loadingConversations && !conversationsError && activeTab === 'request' && connectionRequests.length === 0">
+        <p>No connection requests.</p>
+        <p class="messages-empty-hint">When someone wants to connect, they will appear here.</p>
+      </div>
+    </div>
+  </main>
+</div>

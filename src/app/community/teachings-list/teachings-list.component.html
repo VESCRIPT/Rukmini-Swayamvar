@@ -1,0 +1,46 @@
+<div class="tl-page">
+  <header class="tl-header">
+    <button type="button" class="tl-back" (click)="goBack()" aria-label="Go back">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <div class="tl-header-text">
+      <h1>{{ pageTitle }}</h1>
+      <p>{{ pageSubtitle }}</p>
+    </div>
+    <div class="tl-spacer"></div>
+  </header>
+
+  <main class="tl-main">
+    <p class="tl-status" *ngIf="isLoading">Loading teachings...</p>
+    <p class="tl-status tl-error" *ngIf="!isLoading && loadError">{{ loadError }}</p>
+
+    <article class="tl-card" *ngFor="let article of articles" (click)="open(article.id)">
+      <div class="tl-cover" [class.has-image]="!!article.coverImageUrl" [style.background]="article.coverGradient">
+        <img
+          *ngIf="article.coverImageUrl"
+          class="tl-cover-img"
+          [src]="article.coverImageUrl"
+          [alt]="article.title"
+          loading="lazy"
+          decoding="async"
+          (error)="onCoverError(article)" />
+        <span *ngIf="!article.coverImageUrl">{{ article.coverLabel }}</span>
+      </div>
+      <div class="tl-body">
+        <div class="tl-meta-row">
+          <span class="tl-featured" *ngIf="article.featured">★ Featured</span>
+          <span class="tl-chevron" aria-hidden="true">&gt;</span>
+        </div>
+        <h2>{{ article.title }}</h2>
+        <p class="tl-summary">{{ article.summary }}</p>
+        <p class="tl-updated" *ngIf="article.updatedAt">Updated {{ article.updatedAt }}</p>
+      </div>
+    </article>
+
+    <p class="tl-empty" *ngIf="!isLoading && !loadError && articles.length === 0">
+      No teachings available yet.
+    </p>
+  </main>
+</div>
