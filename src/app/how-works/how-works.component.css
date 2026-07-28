@@ -1,143 +1,125 @@
-/* Baby pink background for the section */
-.how-works-section {
-	background: rgba(255, 246, 250, 0.85) !important;
+.find-someone-section {
+  background: #fdf2f8;
+  padding: 4rem 1.25rem 4.5rem;
+  font-family: 'Roboto', 'Open Sans', system-ui, sans-serif;
 }
 
-/* Responsive card improvements */
-.how-works-section .group {
-	transition: box-shadow 0.3s, transform 0.3s;
-	box-shadow: 0 2px 15px -3px rgba(0,0,0,0.07), 0 10px 20px -2px rgba(0,0,0,0.04);
-	border-radius: 1.5rem;
-	border: 2px solid #f59ac2;
-	background: #fff;
-}
-.how-works-section .group:hover {
-	box-shadow: 0 20px 40px -5px rgba(0,0,0,0.10);
-	transform: translateY(-4px) scale(1.02);
-}
-.how-works-section .flex-col {
-	gap: 2rem;
-}
-@media (max-width: 1024px) {
-	.how-works-section .flex-col {
-		flex-direction: column !important;
-		gap: 2.5rem;
-	}
-	.how-works-section .group {
-		width: 100% !important;
-		max-width: 100% !important;
-		margin-left: auto !important;
-		margin-right: auto !important;
-	}
-}
-@media (max-width: 640px) {
-	.how-works-section .group {
-		padding: 1.25rem !important;
-	}
-	.how-works-section .flex-col {
-		gap: 1.25rem;
-	}
+.find-someone-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-/* Heart Animation Keyframes */
-@keyframes float-heart-1 {
-	0%, 100% {
-		transform: translateY(0) translateX(0) scale(1);
-		opacity: 0.6;
-	}
-	25% {
-		transform: translateY(-15px) translateX(8px) scale(1.1);
-	}
-	50% {
-		transform: translateY(-30px) translateX(0) scale(1);
-		opacity: 0.5;
-	}
-	75% {
-		transform: translateY(-15px) translateX(-8px) scale(1.1);
-	}
+.find-someone-title {
+  color: #65142b;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 600;
+  margin: 0 0 3.5rem;
+  letter-spacing: 0.01em;
 }
 
-@keyframes float-heart-2 {
-	0%, 100% {
-		transform: translateY(0) translateX(0) scale(1);
-		opacity: 0.6;
-	}
-	25% {
-		transform: translateY(-12px) translateX(-10px) scale(1.08);
-	}
-	50% {
-		transform: translateY(-28px) translateX(0) scale(1);
-		opacity: 0.5;
-	}
-	75% {
-		transform: translateY(-12px) translateX(10px) scale(1.08);
-	}
+.find-someone-steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.75rem;
+  align-items: start;
 }
 
-@keyframes float-heart-3 {
-	0%, 100% {
-		transform: translateY(0) scale(1);
-		opacity: 0.6;
-	}
-	50% {
-		transform: translateY(-20px) scale(1.12);
-		opacity: 0.4;
-	}
+@media (min-width: 768px) {
+  .find-someone-steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
 }
 
-@keyframes float-heart-4 {
-	0%, 100% {
-		transform: translateY(0) scale(1);
-		opacity: 0.6;
-	}
-	50% {
-		transform: translateY(-18px) scale(1.1);
-		opacity: 0.45;
-	}
+.find-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 280px;
+  margin: 0 auto;
 }
 
-@keyframes float-heart-5 {
-	0%, 100% {
-		transform: translateY(0) rotate(0deg) scale(1);
-		opacity: 0.5;
-	}
-	50% {
-		transform: translateY(-25px) rotate(5deg) scale(1.15);
-		opacity: 0.35;
-	}
+.find-step-icon-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin-bottom: 1.35rem;
 }
 
-@keyframes float-heart-6 {
-	0%, 100% {
-		transform: translateY(0) rotate(0deg) scale(1);
-		opacity: 0.5;
-	}
-	50% {
-		transform: translateY(-22px) rotate(-5deg) scale(1.12);
-		opacity: 0.4;
-	}
+.find-step-icon {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ed5295 0%, #e644b0 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 28px rgba(230, 68, 176, 0.28);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.animate-float-heart-1 {
-	animation: float-heart-1 4s ease-in-out infinite;
+.find-step:hover .find-step-icon {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 32px rgba(230, 68, 176, 0.36);
 }
 
-.animate-float-heart-2 {
-	animation: float-heart-2 5s ease-in-out infinite 0.5s;
+.find-step-icon svg {
+  width: 64px;
+  height: 64px;
 }
 
-.animate-float-heart-3 {
-	animation: float-heart-3 4.5s ease-in-out infinite 1s;
+.find-step-badge {
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  color: #cf4177;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 32px;
+  box-shadow: 0 2px 8px rgba(101, 20, 43, 0.15);
+  border: 2px solid #f8bbd0;
 }
 
-.animate-float-heart-4 {
-	animation: float-heart-4 5.5s ease-in-out infinite 1.5s;
+.find-step-heading {
+  color: #ed5295;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 0.65rem;
 }
 
-.animate-float-heart-5 {
-	animation: float-heart-5 6s ease-in-out infinite 0.8s;
+.find-step-desc {
+  color: #666666;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 240px;
 }
 
-.animate-float-heart-6 {
-	animation: float-heart-6 5.5s ease-in-out infinite 1.2s;
+@media (min-width: 1024px) {
+  .find-someone-section {
+    padding: 5rem 1.5rem 5.5rem;
+  }
+
+  .find-someone-title {
+    margin-bottom: 4rem;
+  }
+
+  .find-step-icon-wrap,
+  .find-step-icon {
+    width: 156px;
+    height: 156px;
+  }
+
+  .find-step-icon svg {
+    width: 72px;
+    height: 72px;
+  }
 }

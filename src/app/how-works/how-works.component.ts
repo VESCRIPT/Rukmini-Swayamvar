@@ -22,9 +22,9 @@ export class HowWorksComponent implements AfterViewInit, OnDestroy {
 
     this.ctx = gsap.context(() => {
       gsap.from('.how-works-heading', {
-        y: 50,
+        y: 40,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.75,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: this.howWorksSection?.nativeElement,
@@ -33,20 +33,8 @@ export class HowWorksComponent implements AfterViewInit, OnDestroy {
         }
       });
 
-      gsap.from('.flow-svg', {
-        opacity: 0,
-        scale: 0.98,
-        duration: 0.9,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: this.howWorksSection?.nativeElement,
-          start: 'top 72%',
-          once: true
-        }
-      });
-
       const stepCards = gsap.utils.toArray<HTMLElement>('.how-step-card');
-      gsap.set(stepCards, { autoAlpha: 0, y: 55 });
+      gsap.set(stepCards, { autoAlpha: 0, y: 45 });
 
       const stepTimeline = gsap.timeline({
         scrollTrigger: {
@@ -62,10 +50,10 @@ export class HowWorksComponent implements AfterViewInit, OnDestroy {
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.7,
             ease: 'power3.out'
           },
-          index === 0 ? 0 : '+=0.35'
+          index === 0 ? 0.1 : '+=0.18'
         );
       });
     }, this.howWorksSection.nativeElement);
